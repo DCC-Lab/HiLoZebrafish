@@ -7,6 +7,7 @@
   - Adapteur pour BX51
 
 TO-DO : 
+  - Abstract SN affiche (VPN)
   - Comprendre git (VPN et ML)
   - Demain 17 mai 2019 : Trouver les À TROUVER, aller voir Benoit chez Bliq (ML)
   - Jouer avec le code de l'illuminateur et vérifier qu'on a toutes les lens (ML). FOV = 600 X 600 X 300
