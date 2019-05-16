@@ -18,5 +18,3 @@ TO-DO :
   - Trouver le f selon le mouvement de la lentille (ML)
   - Semaine prochaine : Synchroniser l'acquisition et le mouvement de la lentille/vérifier comment l'acquisition se fait avec Nirvana (parler à François pour installer Nirvana sur l'ordi en-bas)
     (VPN et ML)
-
-allo
