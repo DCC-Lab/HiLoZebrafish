@@ -6,13 +6,13 @@ progression du microscope """
 
 # Objective
 ObjectiveNA = 0.5
-ObjectiveWorkingDistance = 20
-FocalOfLensHabituallyUsedWithObjective = 90
-ObjectiveMagnification = 2
+ObjectiveWorkingDistance = 3.5
+FocalOfLensHabituallyUsedWithObjective = 180
+ObjectiveMagnification = 20
 FocalObjective = FocalOfLensHabituallyUsedWithObjective/ObjectiveMagnification
 ObjectiveDiameterEntrancePupil = 2*FocalObjective*ObjectiveNA
 FocalOfTubeLens = 100
-FieldNumber = 17.5
+FieldNumber = 26.5
 Magnification = FocalOfTubeLens/FocalObjective
 ObjectiveMaximumFOV = FieldNumber/Magnification
 
