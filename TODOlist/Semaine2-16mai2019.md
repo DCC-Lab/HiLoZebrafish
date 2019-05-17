@@ -1,7 +1,7 @@
 À COMMANDER (VPN) :
   - diffuseur DG10-1500 : https://www.thorlabs.com/thorproduct.cfm?partnumber=DG10-1500
   - objectif UMPLFN 20X : https://www.olympus-lifescience.com/en/objectives/lumplfln-w/#!cms[tab]=%2Fobjectives%2Flumplfln-w%2F20xw
-  - Olympus U-TLU + U-CMAD3 + U-TV1X-2 : Adaptateur pour le BX51 et la cam Orcaflash
+  - Olympus U-TLU + U-CMAD3 + U-TV1X-2 : Adaptateur pour le BX51 et la cam Orcaflash : Fait!
   - Thunderbolt 3 à 2 apple : Fait! 
 
 À TROUVER (ML) : 
