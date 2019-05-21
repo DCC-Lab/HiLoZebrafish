@@ -1,6 +1,6 @@
 À COMMANDER (VPN) :
-  - diffuseur DG10-1500 : https://www.thorlabs.com/thorproduct.cfm?partnumber=DG10-1500
-  - objectif UMPLFN 20X : https://www.olympus-lifescience.com/en/objectives/lumplfln-w/#!cms[tab]=%2Fobjectives%2Flumplfln-w%2F20xw
+  - diffuseur DG10-1500 : https://www.thorlabs.com/thorproduct.cfm?partnumber=DG10-1500 Fait!
+  - objectif UMPLFN 20X : https://www.olympus-lifescience.com/en/objectives/lumplfln-w/#!cms[tab]=%2Fobjectives%2Flumplfln-w%2F20xw Fait!
   - Olympus U-TLU + U-CMAD3 + U-TV1X-2 : Adaptateur pour le BX51 et la cam Orcaflash : Fait!
   - Thunderbolt 3 à 2 apple : Fait! 
 
@@ -8,11 +8,11 @@
   - Caméra Orcaflash : Fait! Chez Bliq
   - Adapteur pour BX51 (on aurait juste besoin d'un diffuseur? voir mardi et mercredi prochain avec Alicja)
   - Power supply pour la boîte d'acquisition : Fait! Est sur la table optique.
-  - Camera link bouts gros et petit
+  - Camera link bouts gros et petit : Fait! 
 
 TO-DO : 
   - Abstract SN affiche (VPN)
-  - Comprendre git (VPN et ML)
+  - Comprendre git (VPN et ML) : ok
   - Demain 17 mai 2019 : Trouver les À TROUVER, aller voir Benoit chez Bliq (ML)
   - Jouer avec le code de l'illuminateur et vérifier qu'on a toutes les lens (ML). FOV = 600 X 600 X 300
     - Semaine prochaine : Concevoir l'illuminateur (ML)
