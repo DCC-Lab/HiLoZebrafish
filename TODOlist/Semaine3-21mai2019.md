@@ -1,7 +1,7 @@
 À COMMANDER : (VPN)
   - EXFO 810-00032 Collimating adaptor S/N : DH1437
-  - 4 cables WilcoImaging RW1LX17-2.0 2 meter standard to mini camera to link cable.
-  - Carte (Alicja va envoyer infos)
+  - 4 cables WilcoImaging RW1LX17-2.0 2 meter standard to mini camera to link cable. : FAIT 22 mai 2019
+  - Carte (Alicja va envoyer infos) : FAIT 22 mai 2019
 
 TODO : 
   - Laser PySerial (#PyCereal) truc (ML)
