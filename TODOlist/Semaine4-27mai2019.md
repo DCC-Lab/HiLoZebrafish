@@ -8,3 +8,4 @@ TODO :
   - Faire fonctionner la lentille optotune. (VPN)
   - Patenter l'illumination (ML)
   - Synchroniser l'acquisition et le mouvement de la lentille/vérifier comment l'acquisition se fait avec Nirvana(VPN et ML)
+  - TAPONNER LES POISSONS (VPN et ML)
