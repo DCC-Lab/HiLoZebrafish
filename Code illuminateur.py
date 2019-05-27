@@ -171,12 +171,45 @@ class Sparq:
         illumination.fanAngle = 1.05  # NA = 1.05
         illumination.fanNumber = 11
         illumination.rayNumber = 3
-        illumination.showImages = False
+        illumination.showImages = True
 
         illumination.append(obj)
         illumination.append(Space(d=100))
         illumination.append(tubeLens)
         illumination.append(Space(d=100))
+
+        return illumination
+
+    def tracingForIlluminatorMagnification():
+        L1 = Lens(f=40, diameter=30, label="$L_1$")
+        L2 = Lens(f=30, diameter=20, label="$L_2$")
+        L3 = Lens(f=-35, diameter=22, label="$L_3$")
+        L4 = Lens(f=75, diameter=32, label="$L_4$")
+        LExc = Lens(f=45, diameter=35, label="Exc")
+
+        illumination = ImagingPath()
+        illumination.label = "Illumination only illuminator"
+        illumination.objectHeight = 6
+        illumination.fanAngle = 0.5
+        illumination.fanNumber = 11
+        illumination.rayNumber = 3
+        illumination.showImages = True
+
+        illumination.append(Space(d=45))
+        illumination.append(LExc)
+        illumination.append(Space(d=20))
+        illumination.append(L4)
+        illumination.append(Space(d=40))
+        illumination.append(L3)
+        illumination.append(Space(d=57))
+        illumination.append(L2)
+        illumination.append(Space(d=30))
+        illumination.append(Aperture(diameter=30, label="CF"))
+        illumination.append(Space(d=20))
+        illumination.append(Aperture(diameter=30, label="AF"))
+        illumination.append(Space(d=40))
+        illumination.append(L1)
+        illumination.append(Space(d=120))
 
         return illumination
 
@@ -188,3 +221,4 @@ if __name__ == "__main__":
     Sparq.illuminationFromObjectiveWithOptotune().display()
     Sparq.illuminationFromSourceWithOptotune().display()
     Sparq.illuminationFromObjectiveToCamera().display()
+    Sparq.tracingForIlluminatorMagnification().display()
