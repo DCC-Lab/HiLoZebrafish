@@ -26,18 +26,17 @@ ObjectiveINV = ObjectiveNA*((CameraMaximumFOV*0.5)**2)*np.pi
 ObjectiveNAWithINV = ObjectiveINV/(((ObjectiveDiameterEntrancePupil*0.5)**2)*np.pi)
 SourceMinAngleAtObjective = np.degrees(ObjectiveNAWithINV)
 
-# 4f system
-Lens1Focal = 100
-Lens1Diameter = 75
-Lens2Focal = 200
-Lens2Diameter = 75
-LensMagnification = Lens2Focal/Lens1Focal
+# Illuminator system, see "Code illuminateur.py"
+L1Focal = 40
+L1Diameter = 30
+IlluminatorMagnification = 2.85714  # Determine with "Code illuminateur.py"
+DistanceBetweenL1andObj = 120
 
 # Source (Diffuser)
 SourceDiameter = 22
-SourceDiameterToFillEntrancePupil = ObjectiveDiameterEntrancePupil/LensMagnification
-SourceDiameterAtEntrancePupil = SourceDiameter*LensMagnification
-SourceMaxAngleAtObjective = np.degrees(np.sin(((Lens2Diameter-SourceDiameterAtEntrancePupil)/2)/Lens2Focal))
+SourceDiameterToFillEntrancePupil = ObjectiveDiameterEntrancePupil/IlluminatorMagnification
+SourceDiameterAtEntrancePupil = SourceDiameter*IlluminatorMagnification
+SourceMaxAngleAtObjective = np.degrees(np.sin(((L1Diameter-SourceDiameterAtEntrancePupil)/2)/DistanceBetweenL1andObj))
 DiffuserNA = 1
 
 # Fiber and Speckles
@@ -61,7 +60,7 @@ print("FocalObjective = {} mm".format(FocalObjective),
       "ObjectiveINV = {}".format(ObjectiveINV),
       "ObjectiveNAWithINV = {}".format(ObjectiveNAWithINV),
       "SourceMinAngleAtObjective = {}°".format(SourceMinAngleAtObjective),
-      "LensMagnification = {}".format(LensMagnification),
+      "IlluminatorMagnification = {}".format(IlluminatorMagnification),
       "SourceOriginalDiameterToFillEntrancePupil = {} mm".format(SourceDiameterToFillEntrancePupil),
       "SourceDiameterAtEntrancePupil = {} mm".format(SourceDiameterAtEntrancePupil),
       "SourceMaxAngleAtObjective = {}°".format(SourceMaxAngleAtObjective),
