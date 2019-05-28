@@ -26,14 +26,15 @@ ObjectiveINV = ObjectiveNA*((CameraMaximumFOV*0.5)**2)*np.pi
 ObjectiveNAWithINV = ObjectiveINV/(((ObjectiveDiameterEntrancePupil*0.5)**2)*np.pi)
 SourceMinAngleAtObjective = np.degrees(ObjectiveNAWithINV)
 
-# Illuminator system, see "Code illuminateur.py"
+# Illuminator system, see "Code illuminateur.py, The last lens before objective is at this moment L1 but it will
+# probably be the optotune lens"
 L1Focal = 40
 L1Diameter = 30
 IlluminatorMagnification = 2.85714  # Determine with "Code illuminateur.py"
 DistanceBetweenL1andObj = 120
 
 # Source (Diffuser)
-SourceDiameter = 22
+SourceDiameter = 3.15
 SourceDiameterToFillEntrancePupil = ObjectiveDiameterEntrancePupil/IlluminatorMagnification
 SourceDiameterAtEntrancePupil = SourceDiameter*IlluminatorMagnification
 SourceMaxAngleAtObjective = np.degrees(np.sin(((L1Diameter-SourceDiameterAtEntrancePupil)/2)/DistanceBetweenL1andObj))
