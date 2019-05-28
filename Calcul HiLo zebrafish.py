@@ -17,9 +17,9 @@ Magnification = FocalOfTubeLens/FocalObjective
 ObjectiveMaximumFOV = FieldNumber/Magnification
 
 # Camera
-CameraDiagonal = 16
+CameraDiagonal = 18.826
 CameraMaximumFOV = CameraDiagonal/Magnification
-CameraPixelSize = 4.54
+CameraPixelSize = 6.5  # µm
 
 # Suite objective
 ObjectiveINV = ObjectiveNA*((CameraMaximumFOV*0.5)**2)*np.pi
