@@ -222,19 +222,3 @@ if __name__ == "__main__":
     Sparq.illuminationFromSourceWithOptotune().display()
     Sparq.illuminationFromObjectiveToCamera().display()
     Sparq.tracingForIlluminatorMagnification().display()
-
-
- #   class UMPLFN20XW(Objective):
- #       """ Olympus 20x immersion objective
- #       Immersion not considered at this point.
- #       """
-#
- #       def __init__(self):
-  #          super(UMPLFN20XW, self).__init__(f=180 / 20,
-   #                                          NA=0.5,
-    #                                         focusToFocusLength=45,
-     #                                        backAperture=9,
-      #                                       workingDistance=3.5,
-       #                                      label='UMPLFN20XW',
-        #                                     url="https://www.olympus-lifescience.com/en/objectives/lumplfln-w/#!cms[tab]=%"
-         #                                        "2Fobjectives%2Flumplfln-w%2F20xw")
