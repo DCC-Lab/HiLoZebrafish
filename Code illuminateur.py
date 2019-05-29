@@ -18,8 +18,8 @@ class Sparq:
 
         illumination = ImagingPath()
         illumination.label = "Sparq illumination"
-        illumination.objectHeight = 0.5+0.2 # mm maximum, include diffuse spot size
-        illumination.fanAngle = 1.05 # NA = 1.05
+        illumination.objectHeight = 0.7  # mm maximum, include diffuse spot size
+        illumination.fanAngle = 0.5  # NA = 0.5
         illumination.fanNumber = 11
         illumination.rayNumber = 3
         illumination.showImages = False
@@ -28,9 +28,9 @@ class Sparq:
         illumination.append(Space(d=120))
         illumination.append(L1)
         illumination.append(Space(d=40))
-        illumination.append(Aperture(diameter=30,label="AF"))
+        illumination.append(Aperture(diameter=30, label="AF"))
         illumination.append(Space(d=20))
-        illumination.append(Aperture(diameter=30,label="CF"))
+        illumination.append(Aperture(diameter=30, label="CF"))
         illumination.append(Space(d=30))
         illumination.append(L2)
         illumination.append(Space(d=57))
@@ -53,12 +53,11 @@ class Sparq:
 
         illumination = ImagingPath()
         illumination.label = "Sparq illumination with Excelitas"
-        illumination.objectHeight = 6
-        illumination.fanAngle = 0.5
+        illumination.objectHeight = 3.15
+        illumination.fanAngle = 0.5  # NAdiffuser=1 alors mettre 0.5 ou 1?
         illumination.fanNumber = 11
         illumination.rayNumber = 3
         illumination.showImages = False
-
 
         illumination.append(Space(d=45))
         illumination.append(LExc)
@@ -69,9 +68,9 @@ class Sparq:
         illumination.append(Space(d=57))
         illumination.append(L2)
         illumination.append(Space(d=30))
-        illumination.append(Aperture(diameter=30,label="CF"))
+        illumination.append(Aperture(diameter=30, label="CF"))
         illumination.append(Space(d=20))
-        illumination.append(Aperture(diameter=30,label="AF"))
+        illumination.append(Aperture(diameter=30, label="AF"))
         illumination.append(Space(d=40))
         illumination.append(L1)
         illumination.append(Space(d=120))
@@ -93,8 +92,8 @@ class Sparq:
 
         illumination = ImagingPath()
         illumination.label = "Sparq illumination with Optotune"
-        illumination.objectHeight = 0.5 + 0.2  # mm maximum, include diffuse spot size
-        illumination.fanAngle = 1.05  # NA = 1.05
+        illumination.objectHeight = 0.7  # mm maximum, include diffuse spot size
+        illumination.fanAngle = 0.5  # NA = 0.5
         illumination.fanNumber = 11
         illumination.rayNumber = 3
         illumination.showImages = False
@@ -133,8 +132,8 @@ class Sparq:
 
         illumination = ImagingPath()
         illumination.label = "Sparq illumination with Optotune"
-        illumination.objectHeight = 6
-        illumination.fanAngle = 0.5
+        illumination.objectHeight = 3.15
+        illumination.fanAngle = 0.5  # NAdiffuser=1 alors mettre 0.5 ou 1?
         illumination.fanNumber = 11
         illumination.rayNumber = 3
         illumination.showImages = False
@@ -161,14 +160,15 @@ class Sparq:
         return illumination
 
     def illuminationFromObjectiveToCamera():
+        """ ADD OPTOTUNE"""
         obj = olympus.XLUMPlanFLN20X()
         tubeLens = Lens(f=100, diameter=75, label="Tube Lens")
         obj.flipOrientation()
 
         illumination = ImagingPath()
         illumination.label = "Microscope system"
-        illumination.objectHeight = 0.5 + 0.2  # mm maximum, include diffuse spot size
-        illumination.fanAngle = 1.05  # NA = 1.05
+        illumination.objectHeight = 0.7  # mm maximum, include diffuse spot size
+        illumination.fanAngle = 0.5  # NA = 0.5
         illumination.fanNumber = 11
         illumination.rayNumber = 3
         illumination.showImages = True
@@ -180,6 +180,8 @@ class Sparq:
 
         return illumination
 
+
+
     def tracingForIlluminatorMagnification():
         L1 = Lens(f=40, diameter=30, label="$L_1$")
         L2 = Lens(f=30, diameter=20, label="$L_2$")
@@ -189,7 +191,7 @@ class Sparq:
 
         illumination = ImagingPath()
         illumination.label = "Illumination only illuminator"
-        illumination.objectHeight = 6
+        illumination.objectHeight = 3.15
         illumination.fanAngle = 0.5
         illumination.fanNumber = 11
         illumination.rayNumber = 3
