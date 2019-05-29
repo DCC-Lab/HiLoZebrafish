@@ -5,6 +5,17 @@ except ImportError:
 
 from raytracing import *
 
+
+class test(Objective):
+    def __init__(self):
+        super(test, self).__init__(f=180/20,
+                                   NA=0.5,
+                                   focusToFocusLength=45,
+                                   backAperture=11,
+                                   workingDistance=3.5,
+                                   label='UMPLFN20XW',
+                                   url="https://www.olympus-lifescience.com/en/objectives/lumplfln-w/")
+
 class Sparq:
     @staticmethod
     def illuminationFromObjective():
@@ -13,7 +24,7 @@ class Sparq:
         L3 = Lens(f=-35, diameter=22, label="$L_3$")
         L4 = Lens(f=75, diameter=32, label="$L_4$")
         LExc = Lens(f=45, diameter=35, label="Exc")
-        obj = olympus.XLUMPlanFLN20X()
+        obj = test()
         obj.flipOrientation()
 
         illumination = ImagingPath()
