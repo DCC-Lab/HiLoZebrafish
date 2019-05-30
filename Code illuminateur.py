@@ -11,7 +11,7 @@ class test(Objective):
         super(test, self).__init__(f=180/20,
                                    NA=0.5,
                                    focusToFocusLength=45,
-                                   backAperture=11,
+                                   backAperture=9,
                                    workingDistance=3.5,
                                    label='UMPLFN20XW',
                                    url="https://www.olympus-lifescience.com/en/objectives/lumplfln-w/")
@@ -60,7 +60,7 @@ class Sparq:
         L3 = Lens(f=-35, diameter=22, label="$L_3$")
         L4 = Lens(f=75, diameter=32, label="$L_4$")
         LExc = Lens(f=45, diameter=35, label="Exc")
-        obj = olympus.XLUMPlanFLN20X()
+        obj = test()
 
         illumination = ImagingPath()
         illumination.label = "Sparq illumination with Excelitas"
@@ -293,8 +293,8 @@ class Sparq:
 
 if __name__ == "__main__":
 
-    # Sparq.illuminationFromObjective().display()
-    Sparq.illuminationFromSource().display()
+     Sparq.illuminationFromObjective().display()
+    # Sparq.illuminationFromSource().display()
     # Sparq.illuminationFromObjectiveWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotuneAndDivergentLens().display()
