@@ -139,7 +139,7 @@ class Sparq:
         L4 = Lens(f=75, diameter=32, label="$L_4$")
         LExc = Lens(f=45, diameter=35, label="Exc")
         Optotune = Lens(f=optotuneFocal, diameter=10, label='Optotune')
-        obj = olympus.XLUMPlanFLN20X()
+        obj = test()
 
         illumination = ImagingPath()
         illumination.label = "Sparq illumination with Optotune"
@@ -163,9 +163,8 @@ class Sparq:
         illumination.append(Aperture(diameter=30, label="AF"))
         illumination.append(Space(d=40))
         illumination.append(L1)
-        illumination.append(Space(d=75))
+        illumination.append(Space(d=120))
         illumination.append(Optotune)
-        illumination.append(Space(d=45))
         illumination.append(obj)
 
         return illumination
@@ -270,12 +269,35 @@ class Sparq:
         return illumination
 
 
+    def investigationOptotuneAtBackAperture():
+        optotuneFocal = 100
+        Optotune = Lens(f=optotuneFocal, diameter=10, label='Optotune')
+        obj = test()
+
+        illumination = ImagingPath()
+        illumination.label = "Investigation Optotune at Back Aperture"
+        illumination.objectHeight = 7
+        illumination.fanAngle = 0.1
+        illumination.fanNumber = 6
+        illumination.rayNumber = 6
+        illumination.showImages = False
+
+        illumination.append(Space(d=20))
+        illumination.append(Optotune)
+        illumination.append(Space(d=10))
+        illumination.append(obj)
+        illumination.append(Space(d=1))
+
+        return illumination
+
+
 if __name__ == "__main__":
 
-    Sparq.illuminationFromObjective().display()
+    # Sparq.illuminationFromObjective().display()
     Sparq.illuminationFromSource().display()
-    Sparq.illuminationFromObjectiveWithOptotune().display()
-    Sparq.illuminationFromSourceWithOptotune().display()
-    Sparq.illuminationFromSourceWithOptotuneAndDivergentLens().display()
-    Sparq.illuminationFromObjectiveToCamera().display()
-    Sparq.tracingForIlluminatorMagnification().display()
+    # Sparq.illuminationFromObjectiveWithOptotune().display()
+    # Sparq.illuminationFromSourceWithOptotune().display()
+    # Sparq.illuminationFromSourceWithOptotuneAndDivergentLens().display()
+    # Sparq.illuminationFromObjectiveToCamera().display()
+    # Sparq.tracingForIlluminatorMagnification().display()
+    # Sparq.investigationOptotuneAtBackAperture().display()
