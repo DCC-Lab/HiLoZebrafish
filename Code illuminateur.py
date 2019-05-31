@@ -213,9 +213,10 @@ class Sparq:
         return illumination
 
     def illuminationFromObjectiveToCamera():
-        """ ADD OPTOTUNE"""
-        obj = olympus.XLUMPlanFLN20X()
-        tubeLens = Lens(f=100, diameter=75, label="Tube Lens")
+        optotuneFocal = 40
+        Optotune = Lens(f=optotuneFocal, diameter=16, label='Optotune')
+        obj = test()
+        tubeLens = Lens(f=180, diameter=60, label="Tube Lens")
         obj.flipOrientation()
 
         illumination = ImagingPath()
@@ -227,9 +228,11 @@ class Sparq:
         illumination.showImages = True
 
         illumination.append(obj)
-        illumination.append(Space(d=100))
+        illumination.append(Space(d=10))
+        illumination.append(Optotune)
+        illumination.append(Space(d=55))
         illumination.append(tubeLens)
-        illumination.append(Space(d=100))
+        illumination.append(Space(d=180))
 
         return illumination
 
@@ -333,7 +336,7 @@ class Sparq:
 
         illumination = ImagingPath()
         illumination.label = "Sparq illumination with Optotune"
-        illumination.objectHeight = 4.5
+        illumination.objectHeight = 3.15
         illumination.fanAngle = 0.5  # NAdiffuser=1 alors mettre 0.5 ou 1?
         illumination.fanNumber = 11
         illumination.rayNumber = 3
@@ -374,7 +377,7 @@ if __name__ == "__main__":
     # Sparq.illuminationFromObjectiveWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotuneAndDivergentLens().display()
-    # Sparq.illuminationFromObjectiveToCamera().display()
+     Sparq.illuminationFromObjectiveToCamera().display()
     # Sparq.tracingForIlluminatorMagnification().display()
     # Sparq.investigationOptotuneAtBackAperture().display()
     # Sparq.investigationOptotuneAndCamera().display()
