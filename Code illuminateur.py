@@ -11,7 +11,7 @@ class test(Objective):
         super(test, self).__init__(f=180/20,
                                    NA=0.5,
                                    focusToFocusLength=45,
-                                   backAperture=9,
+                                   backAperture=11,
                                    workingDistance=3.5,
                                    label='UMPLFN20XW',
                                    url="https://www.olympus-lifescience.com/en/objectives/lumplfln-w/")
@@ -97,8 +97,8 @@ class Sparq:
         L3 = Lens(f=-35, diameter=22, label="$L_3$")
         L4 = Lens(f=75, diameter=32, label="$L_4$")
         LExc = Lens(f=45, diameter=35, label="Exc")
-        Optotune = Lens(f=optotuneFocal, diameter=10, label='Optotune')
-        obj = olympus.XLUMPlanFLN20X()
+        Optotune = Lens(f=optotuneFocal, diameter=16, label='Optotune')
+        obj = test()
         obj.flipOrientation()
 
         illumination = ImagingPath()
@@ -110,7 +110,7 @@ class Sparq:
         illumination.showImages = False
 
         illumination.append(obj)
-        illumination.append(Space(d=40))
+        illumination.append(Space(d=10))
         illumination.append(Optotune)
         illumination.append(Space(d=45+47.5))
         illumination.append(L1)
@@ -138,7 +138,7 @@ class Sparq:
         L3 = Lens(f=-35, diameter=22, label="$L_3$")
         L4 = Lens(f=75, diameter=32, label="$L_4$")
         LExc = Lens(f=45, diameter=35, label="Exc")
-        Optotune = Lens(f=optotuneFocal, diameter=10, label='Optotune')
+        Optotune = Lens(f=optotuneFocal, diameter=16, label='Optotune')
         obj = test()
 
         illumination = ImagingPath()
@@ -271,15 +271,15 @@ class Sparq:
 
     def investigationOptotuneAtBackAperture():
         optotuneFocal = 100
-        Optotune = Lens(f=optotuneFocal, diameter=10, label='Optotune')
+        Optotune = Lens(f=optotuneFocal, diameter=16, label='Optotune')
         obj = test()
 
         illumination = ImagingPath()
         illumination.label = "Investigation Optotune at Back Aperture"
-        illumination.objectHeight = 7
-        illumination.fanAngle = 0.1
-        illumination.fanNumber = 6
-        illumination.rayNumber = 6
+        illumination.objectHeight = 10
+        illumination.fanAngle = 0
+        illumination.fanNumber = 15
+        illumination.rayNumber = 15
         illumination.showImages = False
 
         illumination.append(Space(d=20))
@@ -290,10 +290,86 @@ class Sparq:
 
         return illumination
 
+    def investigationOptotuneAndCamera():
+        optotuneFocal = 40
+        Optotune = Lens(f=optotuneFocal, diameter=16, label='Optotune')
+        obj1 = test()
+        obj2 = test()
+        obj2.flipOrientation()
+
+        illumination = ImagingPath()
+        illumination.label = "Investigation Optotune at Back Aperture"
+        illumination.objectHeight = 10
+        illumination.fanAngle = 0
+        illumination.fanNumber = 15
+        illumination.rayNumber = 15
+        illumination.showImages = False
+
+        illumination.append(Space(d=20))
+        illumination.append(Optotune)
+        illumination.append(Space(d=10))
+        illumination.append(obj1)
+        illumination.append(Space(d=-5.4))
+        illumination.append(obj2)
+        illumination.append(Space(d=10))
+        illumination.append(Optotune)
+        illumination.append(Space(d=20))
+
+        return illumination
+
+    def illuminationFormSourceWithOptotuneAndCamera():
+        # Add tunable lens EL-16-40 and EL-10-30
+        optotuneFocal = 40
+        L1 = Lens(f=40, diameter=30, label="$L_1$")
+        L2 = Lens(f=30, diameter=20, label="$L_2$")
+        L3 = Lens(f=-35, diameter=22, label="$L_3$")
+        L4 = Lens(f=75, diameter=32, label="$L_4$")
+        LExc = Lens(f=45, diameter=35, label="Exc")
+        Optotune = Lens(f=optotuneFocal, diameter=16, label='Optotune')
+        tubeLens = Lens(f=180, diameter=60, label="$tubeLens$")
+        obj1 = test()
+        obj2 = test()
+        obj2.flipOrientation()
+
+        illumination = ImagingPath()
+        illumination.label = "Sparq illumination with Optotune"
+        illumination.objectHeight = 4.5
+        illumination.fanAngle = 0.5  # NAdiffuser=1 alors mettre 0.5 ou 1?
+        illumination.fanNumber = 11
+        illumination.rayNumber = 3
+        illumination.showImages = False
+
+        illumination.append(Space(d=45))
+        illumination.append(LExc)
+        illumination.append(Space(d=20))
+        illumination.append(L4)
+        illumination.append(Space(d=40))
+        illumination.append(L3)
+        illumination.append(Space(d=57))
+        illumination.append(L2)
+        illumination.append(Space(d=30))
+        illumination.append(Aperture(diameter=30, label="CF"))
+        illumination.append(Space(d=20))
+        illumination.append(Aperture(diameter=30, label="AF"))
+        illumination.append(Space(d=40))
+        illumination.append(L1)
+        illumination.append(Space(d=110))
+        illumination.append(Optotune)
+        illumination.append(Space(d=10))
+        illumination.append(obj1)
+        illumination.append(Space(d=-5.4))
+        illumination.append(obj2)
+        illumination.append(Space(d=10))
+        illumination.append(Optotune)
+        illumination.append(Space(d=55))
+        illumination.append(tubeLens)
+        illumination.append(Space(d=180))
+
+        return illumination
 
 if __name__ == "__main__":
 
-     Sparq.illuminationFromObjective().display()
+    # Sparq.illuminationFromObjective().display()
     # Sparq.illuminationFromSource().display()
     # Sparq.illuminationFromObjectiveWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotune().display()
@@ -301,3 +377,5 @@ if __name__ == "__main__":
     # Sparq.illuminationFromObjectiveToCamera().display()
     # Sparq.tracingForIlluminatorMagnification().display()
     # Sparq.investigationOptotuneAtBackAperture().display()
+    # Sparq.investigationOptotuneAndCamera().display()
+    # Sparq.illuminationFormSourceWithOptotuneAndCamera().display()
