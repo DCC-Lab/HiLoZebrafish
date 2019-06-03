@@ -227,6 +227,8 @@ class Sparq:
         illumination.rayNumber = 3
         illumination.showImages = True
 
+        """Raytracing doesn't let me change to space between object and objective... 
+        I wanna change it to 3.5-2.7 = 0.8"""
         illumination.append(obj)
         illumination.append(Space(d=10))
         illumination.append(Optotune)
@@ -273,7 +275,7 @@ class Sparq:
 
 
     def investigationOptotuneAtBackAperture():
-        optotuneFocal = 100
+        optotuneFocal = 40
         Optotune = Lens(f=optotuneFocal, diameter=16, label='Optotune')
         obj = test()
 
