@@ -8,6 +8,7 @@ Valérie :
   - Lire le code à Guillaume.
   - Investiguer sur l'apparence des images sur Nirvana VS sur Fiji #isjustImageJ qui n'est pas la même.
   - Aller prendre sa photo pour sa carte d'accès. 
+  - Acheter deux polariseurs FAIT!
   
 Lectures : 
   - Miniaturized Laser Speckle Reducer OEM Series : https://www.optotune.com/images/products/Optotune%20LSR-OEM.pdf
