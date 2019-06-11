@@ -9,7 +9,7 @@ def normalize_set(set1,set2):
 	max2 = np.amax(set2)	# retourne la valeur maximale du set2
 	min2 = np.amin(set2)	# retourne la valeur minimale du set2
 	diff2 = max2-min2
-	return (((diff2)/float(diff1))*(set1-(((max1-min1)/2) + min1)))+(((max2-min2)/2) + min2)
+	return (((diff2)/float(diff1))*(set1-(((diff1)/2) + min1)))+(((diff2)/2) + min2)
 
 def peak_detect_periodic(set,fq,scanrate,sensibility=0.1):
 	'''Returns all the peak detection for a periodic signal of a given frequency. May not work.'''
