@@ -3,11 +3,11 @@ from scipy import signal
 
 def normalize_set(set1,set2):
 	'''Normalize set1 on set 2'''
-	max1 = np.amax(set1)
-	min1 = np.amin(set1)
+	max1 = np.amax(set1)	# retourne la valeur maximale du set1
+	min1 = np.amin(set1)	# retourne la valeur minimale du set1
 	diff1 = max1-min1
-	max2 = np.amax(set2)
-	min2 = np.amin(set2)
+	max2 = np.amax(set2)	# retourne la valeur maximale du set2
+	min2 = np.amin(set2)	# retourne la valeur minimale du set2
 	diff2 = max2-min2
 	return (((diff2)/float(diff1))*(set1-(((max1-min1)/2) + min1)))+(((max2-min2)/2) + min2)
 
