@@ -33,7 +33,7 @@ class Sparq:
         illumination.fanAngle = 0.5  # NA = 0.5
         illumination.fanNumber = 11
         illumination.rayNumber = 3
-        illumination.showImages = False
+        illumination.showImages = True
 
         illumination.append(obj)
         illumination.append(Space(d=120))
@@ -65,7 +65,8 @@ class Sparq:
         illumination = ImagingPath()
         illumination.label = "Sparq illumination with Excelitas"
         illumination.objectHeight = 3.15
-        illumination.fanAngle = 0.5  # NAdiffuser=1 alors mettre 0.5 ou 1?
+        illumination.fanAngle = 0.087266  # NAdiffuser=1 alors mettre 0.5 ou 1?    # At the moment, NA = 0.122 because of
+        # the diffuser transmission VS output angle graph
         illumination.fanNumber = 11
         illumination.rayNumber = 3
         illumination.showImages = False
@@ -399,13 +400,13 @@ class Sparq:
 if __name__ == "__main__":
 
     # Sparq.illuminationFromObjective().display()
-    # Sparq.illuminationFromSource().display()
+    Sparq.illuminationFromSource().display()
     # Sparq.illuminationFromObjectiveWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotuneAndDivergentLens().display()
     # Sparq.illuminationFromObjectiveToCamera().display()
-    Sparq.illuminationFromCameraToObjective().display()
+    # Sparq.illuminationFromCameraToObjective().display()
     # Sparq.tracingForIlluminatorMagnification().display()
-    Sparq.investigationOptotuneAtBackAperture().display()
+    # Sparq.investigationOptotuneAtBackAperture().display()
     # Sparq.investigationOptotuneAndCamera().display()
     # Sparq.illuminationFormSourceWithOptotuneAndCamera().display()
