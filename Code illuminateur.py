@@ -227,7 +227,7 @@ class Sparq:
         illumination.rayNumber = 3
         illumination.showImages = True
 
-        """Raytracing doesn't let me change to space between object and objective... 
+        """Raytracing doesn't let me change the space between object and objective... 
         I wanna change it to 3.5-2.7 = 0.8"""
         illumination.append(obj)
         illumination.append(Space(d=10))
@@ -235,6 +235,29 @@ class Sparq:
         illumination.append(Space(d=55))
         illumination.append(tubeLens)
         illumination.append(Space(d=180))
+
+        return illumination
+
+    def illuminationFromCameraToObjective():
+        optotuneFocal = 40
+        Optotune = Lens(f=optotuneFocal, diameter=16, label='Optotune')
+        obj = test()
+        tubeLens = Lens(f=180, diameter=60, label="Tube Lens")
+
+        illumination = ImagingPath()
+        illumination.label = "Microscope system"
+        illumination.objectHeight = 5  # mm maximum, include diffuse spot size
+        illumination.fanAngle = 0.07  # NA = 0.5
+        illumination.fanNumber = 11
+        illumination.rayNumber = 3
+        illumination.showImages = True
+
+        illumination.append(Space(d=180))
+        illumination.append(tubeLens)
+        illumination.append(Space(d=55))
+        illumination.append(Optotune)
+        illumination.append(Space(d=10))
+        illumination.append(obj)
 
         return illumination
 
@@ -372,6 +395,7 @@ class Sparq:
 
         return illumination
 
+
 if __name__ == "__main__":
 
     # Sparq.illuminationFromObjective().display()
@@ -379,8 +403,9 @@ if __name__ == "__main__":
     # Sparq.illuminationFromObjectiveWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotuneAndDivergentLens().display()
-     Sparq.illuminationFromObjectiveToCamera().display()
+    # Sparq.illuminationFromObjectiveToCamera().display()
+    Sparq.illuminationFromCameraToObjective().display()
     # Sparq.tracingForIlluminatorMagnification().display()
-    # Sparq.investigationOptotuneAtBackAperture().display()
+    Sparq.investigationOptotuneAtBackAperture().display()
     # Sparq.investigationOptotuneAndCamera().display()
     # Sparq.illuminationFormSourceWithOptotuneAndCamera().display()
