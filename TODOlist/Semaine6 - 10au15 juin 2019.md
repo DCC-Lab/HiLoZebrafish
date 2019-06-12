@@ -2,7 +2,7 @@ Maxence :
   - Ajouter un polariseur entre le diffuseur et la fibre. 
   - Aligner l'illumination. 
     - Vérifier ce qui ne fonctionne pas avec le code à Dan (Pourquoi on arrive pas aux mêmes chiffres? Est-ce qu'il nous manque des infos?) 
-    - Est-ce que le diffuseur a un angle assez grand pour couvrir tout le champ de vue? 
+    - Est-ce que le diffuseur a un angle assez grand pour couvrir tout le champ de vue? Diffuseur N-BK7 a un angle d'environ 5      degrés (FWHM).  
   - Comparer l'illumination entre différentes distances entre la fibre et le diffuseur. Faire un graphe. (si possible)
 
 Valérie : 
