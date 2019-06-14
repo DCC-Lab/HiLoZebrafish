@@ -2,11 +2,10 @@ Maxence :
   - Ajouter un polariseur entre le diffuseur et la fibre. FAIT! (MAIS il est rayé donc on devra le remplacer)
   - Aligner l'illumination. FAIT!
   - Vérifier ce qui ne fonctionne pas avec le code à Dan (Pourquoi on arrive pas aux mêmes chiffres? Est-ce qu'il nous manque des infos?) 
-  - Est-ce que le diffuseur a un angle assez grand pour couvrir tout le champ de vue? Diffuseur N-BK7 a un angle d'environ 5 degrés (FWHM).
+  - Est-ce que le diffuseur a un angle assez grand pour couvrir tout le champ de vue? Diffuseur N-BK7 a un angle d'environ 5 degrés (FWHM). Caractériser le diffuseur (Diffuser transmission VS Output Angle)
   - Comparer des images prises avec un diffuseur de 600 et 1500 grits.
   - Comparer l'illumination entre différentes distances entre la fibre et le diffuseur. Faire un graphe. (si possible)
   - Images de billes fluorescentes 
-  - Caractériser le diffuseur (Diffuser transmission VS Output Angle)
   - Optimiser le couplage entre le faisceau laser et la fibre multimode
 
 Valérie : 
