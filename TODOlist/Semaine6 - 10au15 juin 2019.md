@@ -6,7 +6,7 @@ Maxence :
   - Comparer des images prises avec un diffuseur de 600 et 1500 grits.
   - Comparer l'illumination entre différentes distances entre la fibre et le diffuseur. Faire un graphe. (si possible)
   - Images de billes fluorescentes 
-  - Optimiser le couplage entre le faisceau laser et la fibre multimode
+  - Optimiser le couplage entre le faisceau laser et la fibre multimode FAIT!
 
 Valérie : 
   - Rassembler les informations sur le *Laser Speckle Remover* d'Optotune. Faire un document récapitulatif. Pas fait de document, mais la lecture est faite. 
