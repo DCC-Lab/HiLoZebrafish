@@ -8,4 +8,7 @@ Valérie :
   - Commander les autres grids
   - Comparer l'illumination entre différentes distances entre la fibre et le diffuseur. Faire un graphe. (si possible)
   
+Lecture : 
+  - Optimizing and extending light-sculpting microscopy for fast functional imaging in neuroscience (2015)
+  
 IMAGE POISSON :)
