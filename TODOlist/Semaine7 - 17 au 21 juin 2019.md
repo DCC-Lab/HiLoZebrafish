@@ -6,7 +6,7 @@ Maxence :
   - Voir si l'adapteur (nose-piece) de l'objectif fait en sorte que l'on perd de la puissance
   
 Valérie : 
-  - Faire fonctionner le stage avec le software. 
+  - Faire fonctionner le stage avec le software. FAIT! 
   - Commander les autres grids FAIT! 
   - Comparer l'illumination entre différentes distances entre la fibre et le diffuseur. Faire un graphe. (si possible)
   
