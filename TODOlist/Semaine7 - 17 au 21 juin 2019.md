@@ -7,7 +7,7 @@ Maxence :
   
 Valérie : 
   - Faire fonctionner le stage avec le software. 
-  - Commander les autres grids
+  - Commander les autres grids FAIT! 
   - Comparer l'illumination entre différentes distances entre la fibre et le diffuseur. Faire un graphe. (si possible)
   
 Lecture : 
