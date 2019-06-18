@@ -85,7 +85,9 @@ class Sparq:
         illumination.append(Aperture(diameter=30, label="AF"))
         illumination.append(Space(d=40))
         illumination.append(L1)
-        illumination.append(Space(d=120))
+        illumination.append(Space(d=80))
+        illumination.append(Aperture(diameter=20, label="Nosepiece"))
+        illumination.append(Space(d=40))
         illumination.append(obj)
 
         return illumination
