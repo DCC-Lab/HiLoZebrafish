@@ -9,4 +9,5 @@ Valérie :
 - Comparer l'illumination entre différentes distances entre la fibre et le diffuseur. Faire un graphe. (si possible)
 - Comparer l'uniformité de l'illumination avec et sans polariseur pour différentes distances fibre-diffuseur.
 
-- IMAGE ZEBRAFISH
+
+IMAGE ZEBRAFISH
