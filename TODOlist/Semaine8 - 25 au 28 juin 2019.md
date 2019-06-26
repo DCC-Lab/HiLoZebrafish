@@ -14,3 +14,4 @@ Valérie :
 - Refaire l'expérience de la distance entre le diffuseur et la fibre avec moins d'exposure time (avec et sans polariseur). Faire un curvefit éllipse et vérifier la pente (?) de la courbe. Pente élevée = illumination moins uniforme. 
 - Scalebar avec des billes de 1um! 
 - Vérifier des images de poissons sans binner et en intégrant plus longtemps pour avoir des neurones plus définis. 
+- Faire une présentation pour Jeudi
