@@ -13,5 +13,5 @@ Valérie :
 - Vérifier les filtres. Peut-être qu'ils n'ont pas une bonne transmissivité ou wtv. 
 - Refaire l'expérience de la distance entre le diffuseur et la fibre avec moins d'exposure time (avec et sans polariseur). Faire un curvefit éllipse et vérifier la pente (?) de la courbe. Pente élevée = illumination moins uniforme. 
 - Scalebar avec des billes de 1um! 
-- Vérifier des images de poissons sans binner et en intégrant plus longtemps pour avoir des neurones plus définis. 
+- Vérifier des images de poissons sans binner et en intégrant plus longtemps pour avoir des neurones plus définis. Aussi, comparer les images prises avec et sans speckle.
 - Faire une présentation pour Jeudi
