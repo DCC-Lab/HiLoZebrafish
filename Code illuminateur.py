@@ -296,6 +296,11 @@ class Sparq:
         illumination.append(Space(d=40))
         illumination.append(L1)
         illumination.append(Space(d=120))
+        # illumination.append(Space(d=30))
+        # illumination.append(Lens(f=30, diameter=35, label="Added lens"))
+        # illumination.append(Space(d=90))
+        # illumination.append(Lens(f=60, diameter=35, label="Added lens"))
+        # illumination.append(Space(d=100))
 
         return illumination
 
@@ -402,13 +407,13 @@ class Sparq:
 if __name__ == "__main__":
 
     # Sparq.illuminationFromObjective().display()
-     Sparq.illuminationFromSource().display()
+    # Sparq.illuminationFromSource().display()
     # Sparq.illuminationFromObjectiveWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotuneAndDivergentLens().display()
     # Sparq.illuminationFromObjectiveToCamera().display()
     # Sparq.illuminationFromCameraToObjective().display()
-    # Sparq.tracingForIlluminatorMagnification().display()
+     Sparq.tracingForIlluminatorMagnification().display()
     # Sparq.investigationOptotuneAtBackAperture().display()
     # Sparq.investigationOptotuneAndCamera().display()
     # Sparq.illuminationFormSourceWithOptotuneAndCamera().display()
