@@ -4,8 +4,8 @@ Maxence :
 - Est-ce que le diffuseur a un angle assez grand pour couvrir tout le champ de vue? Diffuseur N-BK7 a un angle d'environ 5 degrés (FWHM). Caractériser le diffuseur (Diffuser transmission VS Output Angle)
 - Comparer des images prises avec des diffuseurs de 120, 240, 600 et 1500 grits.
 - Optimiser la distance fibre-diffuseur (Uniformité VS Intensité lumineuse à l'échantillon)
-- Commander le piezo. 
-- Voir avec Vincent, Radu et Gabriel : Quelle puissance utilise-t-il avec leur 2ph pour imager? Peut-être qu'on a besoin de plus de puissance finalement... 
+- Commander le piezo. (Le message a été envoyé à Daniel, car Julie est en congé)
+- Voir avec Vincent, Radu et Gabriel : Quelle puissance utilise-t-il avec leur 2ph pour imager? Peut-être qu'on a besoin de plus de puissance finalement... ~ 11 mW at the sample (Microscope with illuminator HXP 120V => ~ 11 mW at the sample)
 
 Valérie :
 
