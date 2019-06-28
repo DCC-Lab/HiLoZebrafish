@@ -1,7 +1,7 @@
 Maxence :
 
 - Vérifier ce qui ne fonctionne pas avec le code à Dan (Pourquoi on arrive pas aux mêmes chiffres? Est-ce qu'il nous manque des infos?)
-- Est-ce que le diffuseur a un angle assez grand pour couvrir tout le champ de vue? Diffuseur N-BK7 a un angle d'environ 5 degrés (FWHM). Caractériser le diffuseur (Diffuser transmission VS Output Angle)
+- Est-ce que le diffuseur a un angle assez grand pour couvrir tout le champ de vue? Diffuseur N-BK7 a un angle d'environ 5 degrés (FWHM). Caractériser le diffuseur (Diffuser transmission VS Output Angle) (L'expérimentation est faite, voir avec Daniel si elle est assez rigoureuse)
 - Comparer des images prises avec des diffuseurs de 120, 240, 600 et 1500 grits.
 - Optimiser la distance fibre-diffuseur (Uniformité VS Intensité lumineuse à l'échantillon)
 - Commander le piezo. (Le message a été envoyé à Daniel, car Julie est en congé)
