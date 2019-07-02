@@ -1,4 +1,4 @@
-# Some tips to use the python scripts in this folder to plot Transmission Vs Wavelength graphs
+# Some tips to use python scripts to plot Transmission Vs Wavelength graphs
 - Make sure that the file that contains the data you are trying to plot is a **text file**.
 - Make sure there is no line of text at the beginning and at the end of the file.
 - The decimal mark must be a **decimal point**. If your data contain decimal commas, use the Ctrl + H function of the note pad to replace all commas with points.
