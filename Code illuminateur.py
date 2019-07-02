@@ -65,7 +65,7 @@ class Sparq:
         illumination = ImagingPath()
         illumination.label = "Sparq illumination with Excelitas"
         illumination.objectHeight = 3.15
-        illumination.fanAngle = 0.087266  # NAdiffuser=1 alors mettre 0.5 ou 1?    # At the moment, NA = 0.122 because of
+        illumination.fanAngle = 0.25 #0.087266  # NAdiffuser=1 alors mettre 0.5 ou 1?    # At the moment, NA = 0.122 because of
         # the diffuser transmission VS output angle graph
         illumination.fanNumber = 11
         illumination.rayNumber = 3
@@ -275,13 +275,13 @@ class Sparq:
 
         illumination = ImagingPath()
         illumination.label = "Illumination only illuminator"
-        illumination.objectHeight = 3.15
-        illumination.fanAngle = 0.5
+        illumination.objectHeight = 2
+        illumination.fanAngle = 0.08726
         illumination.fanNumber = 11
         illumination.rayNumber = 3
         illumination.showImages = True
 
-        illumination.append(Space(d=45))
+        illumination.append(Space(d=48))
         illumination.append(LExc)
         illumination.append(Space(d=20))
         illumination.append(L4)
@@ -295,7 +295,16 @@ class Sparq:
         illumination.append(Aperture(diameter=30, label="AF"))
         illumination.append(Space(d=40))
         illumination.append(L1)
+<<<<<<< HEAD
+        illumination.append(Space(d=1345))
+=======
         illumination.append(Space(d=120))
+        # illumination.append(Space(d=30))
+        # illumination.append(Lens(f=30, diameter=35, label="Added lens"))
+        # illumination.append(Space(d=90))
+        # illumination.append(Lens(f=60, diameter=35, label="Added lens"))
+        # illumination.append(Space(d=100))
+>>>>>>> bd2ba00bdd88cb92b084b76ad04f51a8bcd4f297
 
         return illumination
 
@@ -401,14 +410,19 @@ class Sparq:
 
 if __name__ == "__main__":
 
+<<<<<<< HEAD
+    #Sparq.illuminationFromObjective().display()
+    #Sparq.illuminationFromSource().display()
+=======
     # Sparq.illuminationFromObjective().display()
-    Sparq.illuminationFromSource().display()
+    # Sparq.illuminationFromSource().display()
+>>>>>>> bd2ba00bdd88cb92b084b76ad04f51a8bcd4f297
     # Sparq.illuminationFromObjectiveWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotuneAndDivergentLens().display()
     # Sparq.illuminationFromObjectiveToCamera().display()
     # Sparq.illuminationFromCameraToObjective().display()
-    # Sparq.tracingForIlluminatorMagnification().display()
+     Sparq.tracingForIlluminatorMagnification().display()
     # Sparq.investigationOptotuneAtBackAperture().display()
     # Sparq.investigationOptotuneAndCamera().display()
     # Sparq.illuminationFormSourceWithOptotuneAndCamera().display()
