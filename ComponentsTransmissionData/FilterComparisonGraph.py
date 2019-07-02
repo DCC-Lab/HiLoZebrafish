@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 filename1 = "Filter_BA510-550\\Transmission_1_510550.txt"
 filename2 = "Filter_500-590\\Transmission_5_500590.txt"
 filename3 = "GFP_spectrum\\GFP_spectra.txt"
-#filename3 = "Filter_D480-500\\Transmission_9_480500.txt"
 
 x1 = np.loadtxt(filename1, usecols=0)
 y1 = np.loadtxt(filename1, usecols=1)
