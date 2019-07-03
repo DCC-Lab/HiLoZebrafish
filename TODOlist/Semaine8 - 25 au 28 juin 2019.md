@@ -12,8 +12,8 @@ Valérie :
 
 - Ajouter une lentille pour observer l'image de la source lumineuse au diffuseur. Obtenir le diamètre de la source. 
 - Pourquoi on a autant d'artifact de fluorescence dans les images de zebrafish? Investiguer... 
-- Vérifier les filtres. Peut-être qu'ils n'ont pas une bonne transmissivité ou wtv. 
-- Refaire l'expérience de la distance entre le diffuseur et la fibre avec moins d'exposure time (avec et sans polariseur). Faire un curvefit éllipse et vérifier la pente de la courbe. Pente élevée = illumination moins uniforme. 
-- Scalebar avec des billes de 1um! 
-- Vérifier des images de poissons sans binner et en intégrant plus longtemps pour avoir des neurones plus définis. Aussi, comparer les images prises avec et sans speckle. Jusqu'à maintenant, les images étaient toujours prises avec speckle!
-- Faire une présentation pour Jeudi
+- Vérifier les filtres. Peut-être qu'ils n'ont pas une bonne transmissivité ou wtv. (En effet, on a besoin d'un autre filtre! Changé pour le D545\90)
+- Refaire l'expérience de la distance entre le diffuseur et la fibre avec moins d'exposure time (avec et sans polariseur). Faire un curvefit éllipse et vérifier la pente de la courbe. Pente élevée = illumination moins uniforme. (Pas si évident que ça à voir dans les courbes de slopes d'illumination. Comment faire pour savoir quelle est la bonne distance?)
+- Scalebar avec des billes de 1um! (Faut refaire une lame de billes, car les billes sont en agrégats sur notre lame.)
+- Vérifier des images de poissons sans binner et en intégrant plus longtemps pour avoir des neurones plus définis. Aussi, comparer les images prises avec et sans speckle. Jusqu'à maintenant, les images étaient toujours prises avec speckle! (Pas évident de voir la différence entre les deux images...)
+- Faire une présentation pour Jeudi FAIT!
