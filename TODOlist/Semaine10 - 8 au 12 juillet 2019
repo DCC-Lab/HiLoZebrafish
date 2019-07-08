@@ -5,7 +5,7 @@ Maxence :
   - Comparer des images prises avec des diffuseurs de 120, 240, 600 et 1500 grits quand on les reçoit.
   - Optimiser la distance fibre-diffuseur (Uniformité vs. Intensité lumineuse à l'échantillon)
   - Caractériser/Trouver les speckles avec un objectif 40X/60X etc.
-  - Image poisson
+  - Image poisson avec un objectif plus gros, permet d'augmenter (40X) l'irradiance. Déterminer l'irradiance ''parfaite'' pour l'imagerie *in vivo*. 
   
 Valérie : 
   - Faire un film d'activité neuronale d'un plan dans un zebra vivant. Penser essayer avec le 20X et le 40X. 
