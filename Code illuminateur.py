@@ -281,7 +281,7 @@ class Sparq:
         illumination.rayNumber = 3
         illumination.showImages = True
 
-        illumination.append(Space(d=48))
+        illumination.append(Space(d=45))
         illumination.append(LExc)
         illumination.append(Space(d=20))
         illumination.append(L4)
@@ -295,8 +295,12 @@ class Sparq:
         illumination.append(Aperture(diameter=30, label="AF"))
         illumination.append(Space(d=40))
         illumination.append(L1)
-        illumination.append(Space(d=1345))
         illumination.append(Space(d=120))
+        illumination.append(Space(d=30))
+        illumination.append(Lens(f=30, diameter=25, label='ajout'))
+        illumination.append(Space(d=230))
+        illumination.append(Lens(f=200, diameter=25, label='ajout 2'))
+        illumination.append(Space(d=210))
         # illumination.append(Space(d=30))
         # illumination.append(Lens(f=30, diameter=35, label="Added lens"))
         # illumination.append(Space(d=90))
