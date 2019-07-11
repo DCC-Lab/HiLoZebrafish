@@ -408,11 +408,48 @@ class Sparq:
 
         return illumination
 
+    def investigationObjectiveBehaviour():
+        L1 = Lens(f=40, diameter=30, label="$L_1$")
+        L2 = Lens(f=30, diameter=20, label="$L_2$")
+        L3 = Lens(f=-35, diameter=22, label="$L_3$")
+        L4 = Lens(f=75, diameter=32, label="$L_4$")
+        LExc = Lens(f=45, diameter=35, label="Exc")
+        obj = test()
+
+        illumination = ImagingPath()
+        illumination.label = "Sparq illumination with Excelitas"
+        illumination.objectHeight = 3.15
+        illumination.fanAngle = 0.25 #0.087266  # NAdiffuser=1 alors mettre 0.5 ou 1?    # At the moment, NA = 0.122 because of
+        illumination.fanNumber = 11
+        illumination.rayNumber = 3
+        illumination.showImages = True
+
+        illumination.append(Space(d=45))
+        illumination.append(LExc)
+        illumination.append(Space(d=20))
+        illumination.append(L4)
+        illumination.append(Space(d=40))
+        illumination.append(L3)
+        illumination.append(Space(d=57))
+        illumination.append(L2)
+        illumination.append(Space(d=30))
+        illumination.append(Aperture(diameter=30, label="CF"))
+        illumination.append(Space(d=20))
+        illumination.append(Aperture(diameter=30, label="AF"))
+        illumination.append(Space(d=40))
+        illumination.append(L1)
+        illumination.append(Space(d=80))
+        illumination.append(Aperture(diameter=20, label="Nosepiece"))
+        illumination.append(Space(d=40))
+        illumination.append(obj)
+
+        return illumination
+
 
 if __name__ == "__main__":
 
     #Sparq.illuminationFromObjective().display()
-    #Sparq.illuminationFromSource().display()
+    # Sparq.illuminationFromSource().display()
     # Sparq.illuminationFromObjective().display()
     # Sparq.illuminationFromSource().display()7
     # Sparq.illuminationFromObjectiveWithOptotune().display()
@@ -420,7 +457,8 @@ if __name__ == "__main__":
     # Sparq.illuminationFromSourceWithOptotuneAndDivergentLens().display()
     # Sparq.illuminationFromObjectiveToCamera().display()
     # Sparq.illuminationFromCameraToObjective().display()
-     Sparq.tracingForIlluminatorMagnification().display()
+    # Sparq.tracingForIlluminatorMagnification().display()
     # Sparq.investigationOptotuneAtBackAperture().display()
     # Sparq.investigationOptotuneAndCamera().display()
     # Sparq.illuminationFormSourceWithOptotuneAndCamera().display()
+    Sparq.investigationObjectiveBehaviour().display()
