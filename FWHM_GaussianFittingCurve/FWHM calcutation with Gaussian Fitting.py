@@ -1,9 +1,9 @@
 from math import sqrt, log, exp
 from sympy import symbols, solve, Function, Eq, solveset
 
-a =	36348.8916
-b = 2.36981
-c = 0.42731
+a =	66377.8508
+b = 3.93834
+c = 0.71691
 print(a, b, c, sep='\n')
 
 y = a/2
