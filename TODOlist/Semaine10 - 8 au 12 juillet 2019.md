@@ -1,5 +1,5 @@
 Maxence :
-  - Regrouper les informations sur l'optique du microscope et rédiger un document informatif pour que l'on aille une bonne compréhension.
+  - Regrouper les informations sur l'optique du microscope et rédiger un document informatif.
   - Vérifier ce qui ne fonctionne pas avec le code à Dan (Pourquoi on arrive pas aux mêmes chiffres? Est-ce qu'il nous manque des infos?)
   - Est-ce que le diffuseur a un angle assez grand pour couvrir tout le champ de vue? *Caractériser le diffuseur (Diffuser transmission VS Output Angle) *Recommencer l'expérience faite avec un écran blanc, mon téléphone et une règle pour plusieurs distances diffuseur-écran.* FAIT! Les résultats montre que l'expérience ne fonctionne probablement pas
   - Comparer des images prises avec des diffuseurs de 120, 240, 600 et 1500 grits quand on les reçoit. FAIT! *Reste plus qu'à voir qu'est-ce qu'on peut en tirer
