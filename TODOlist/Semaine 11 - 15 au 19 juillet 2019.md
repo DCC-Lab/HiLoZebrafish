@@ -7,6 +7,7 @@ Maxence :
     - Comparer la taille exprimentale des speckles avec sa valeur théorique (Taille = lambda/2NA)
   
   Valérie : 
+  
     - C'est quoi une simulation par régression?
     - Comment faire l'expérience avec le spot sur le mur? *probablement qu'il va falloir refaire le setup droit*
     - Mesurer expérimentalement la résolution axiale. Comparer avec la valeur théorique (?). 
@@ -18,6 +19,7 @@ Maxence :
     Utiliser des objectifs avec plus de grossissement si possible. 
     
   Lectures : 
+  
     - Statistical speckle study to characterize scattering media: use of two complementary approaches, O. Carvalho and *al*.,  
     - Speckle size, intensity and contrast measurement application in micron-size particle concentration assessment, Dan Chicea
     - Methods for Determination of Mean Speckle Size in Simulated Speckle Pattern, I. Hamarava and *al*.,
