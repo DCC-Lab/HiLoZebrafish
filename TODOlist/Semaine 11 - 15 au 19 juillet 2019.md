@@ -1,7 +1,6 @@
 Maxence : 
   - Regrouper les informations sur l'optique et rédiger un document informatif. 
   - Comment refaire l'expérience de l'angle du diffuseur? 
-  - Comparer les images prises avec des diffuseurs 120, 220, 160 et 1500 grids.
   - Optimiser la distance fibre-diffuseur (Uniformité vs. Intensité lumineuse à l'échantillon vs. taille des speckles)
     - Trouver la tailles des speckles avec une simulation(?) par régression(?). 
     - Comparer la taille exprimentale des speckles avec sa valeur théorique (Taille = lambda/2NA)
