@@ -27,10 +27,10 @@ print(FWHM)
 
 '''Gaussian fit curve'''
 
-a =	93.18842
-b =	107.92623
-c = 265.97402
-d = 65.37462
+a = 83.94127
+b = 103.82069
+c = 1023.99996
+d = 274.45004
 y = (b-a)/2 + a
 x = symbols('x', real=True)
 
