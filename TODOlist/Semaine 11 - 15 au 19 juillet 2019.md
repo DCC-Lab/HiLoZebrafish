@@ -1,13 +1,12 @@
 Maxence : 
   - Regrouper les informations sur l'optique et rédiger un document informatif. 
-  - Comment refaire l'expérience de l'angle du diffuseur? 
+  - Comment refaire l'expérience de l'angle du diffuseur? FAIT *avec le stage!*
   - Optimiser la distance fibre-diffuseur (Uniformité vs. Intensité lumineuse à l'échantillon vs. taille des speckles)
     - Trouver la tailles des speckles avec une simulation(?) par régression(?). FAIT !
     - Comparer la taille exprimentale des speckles avec sa valeur théorique (Taille = lambda/2NA)
   
   Valérie : 
-  
-    - C'est quoi une simulation par régression? FAIT! Curve fit 
+    - C'est quoi une simulation par régression? FAIT! *Curve fit* 
     - Comment faire l'expérience avec le spot sur le mur? *probablement qu'il va falloir refaire le setup droit*
     - Mesurer expérimentalement la résolution axiale. Comparer avec la valeur théorique (?). 
     *La résolution axiale d'un objectif est dépendante de sa résolution latérale.
