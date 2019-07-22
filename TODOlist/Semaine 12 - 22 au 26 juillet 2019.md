@@ -13,6 +13,7 @@ Valérie :
     Plus petit objet pouvant être discernable par le système optique. 
     Sectionnement optique ne doit pas être plus petit que la résolution axiale. 
     1 neurone = 4-5 um*
+  - Commence dont ton affiche pour SN toi chose... 
  
  
  
