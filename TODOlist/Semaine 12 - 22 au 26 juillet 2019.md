@@ -7,12 +7,13 @@ Maxence :
   
 Valérie : 
   - Comparer la taille des speckles avec les deux diffuseurs DG10-1500 et LSR-3005.
+    - Reprendre d'autres images des speckles avec les deux diffuseurs. Meilleurs résultats statistiques! 
   - Comment faire l'expérience avec le spot sur le mur? *probablement qu'il va falloir refaire le setup droit*
   - Mesurer expérimentalement la résolution axiale. Comparer avec la valeur théorique (?). 
-    *La résolution axiale d'un objectif est dépendante de sa résolution latérale.
-    Plus petit objet pouvant être discernable par le système optique. 
-    Sectionnement optique ne doit pas être plus petit que la résolution axiale. 
-    1 neurone = 4-5 um*
+    *La résolution axiale d'un objectif est dépendante de sa résolution latérale.*
+    *Plus petit objet pouvant être discernable par le système optique.*
+    *Sectionnement optique ne doit pas être plus petit que la résolution axiale.* 
+    *1 neurone = 4-5 um*
   - Commence dont ton affiche pour SN toi chose... 
  
  
