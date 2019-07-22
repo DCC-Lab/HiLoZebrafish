@@ -20,5 +20,5 @@ Valérie :
  
  - Imagerie de poisson zèbre GCaMP (est-ce qu'il nous en reste?)
  - On est à boutte que Caféine ne fonctionne pas! WE NEED DELTA. 
- - 
+ - Aller voir Bertrand avec notre LSR. Tester son fonctionnement. 
  
