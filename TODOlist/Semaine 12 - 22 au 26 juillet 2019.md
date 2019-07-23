@@ -3,12 +3,12 @@ Maxence :
   - Expérience sur l'angle du diffuseur DG10-1500 et LSR-3005 : Regrouper les données en tableau, graphe... FAIT!
   - Optimiser la distance fibre-diffuseur (Uniformité vs. Intensité lumineuse à l'échantillon vs. taille des speckles)
   - Connecter le LSR à Nirvana (Par le Labjack)
-  - Fabriquer une boîte pour protéger nos yeux des réflexions indésirables du laser
-  - Graphique du spectre de transmission du LSR, mesuré avec le spectromètre d'Anaïs.
+  - Fabriquer une boîte pour protéger nos yeux des réflexions indésirables du laser FAIT!
+  - Graphique du spectre de transmission du LSR, mesuré avec le spectromètre d'Anaïs. FAIT!
   
 Valérie : 
-  - Comparer la taille des speckles avec les deux diffuseurs DG10-1500 et LSR-3005. FAIT
-    - Reprendre d'autres images des speckles avec les deux diffuseurs. Meilleurs résultats statistiques! FAIT
+  - Comparer la taille des speckles avec les deux diffuseurs DG10-1500 et LSR-3005. FAIT!
+    - Reprendre d'autres images des speckles avec les deux diffuseurs. Meilleurs résultats statistiques! FAIT!
     - Taille théorique?
   - Comment faire l'expérience avec le spot sur le mur? *probablement qu'il va falloir refaire le setup droit*
   - Mesurer expérimentalement la résolution axiale. Comparer avec la valeur théorique (?). 
@@ -19,12 +19,11 @@ Valérie :
   - Commence dont ton affiche pour SN toi chose... 
  
  
- 
  _______________________________________________________
  
  - Imagerie de poisson zèbre GCaMP sur le 2-photons bessel avec François. 
  - On est à boutte que Caféine ne fonctionne pas! WE NEED DELTA. FAIT
  - Aller voir Bertrand avec notre LSR. Tester son fonctionnement. 
- - Prendre des z-stacks avec le piezo électrique
- - Transmission du LSR
+ - Prendre des z-stacks avec le piezo électrique.
+ - Transmission du LSR avec le potentiomètre.
  
