@@ -7,8 +7,9 @@ Maxence :
     
   
 Valérie : 
-  - Comparer la taille des speckles avec les deux diffuseurs DG10-1500 et LSR-3005.
-    - Reprendre d'autres images des speckles avec les deux diffuseurs. Meilleurs résultats statistiques! 
+  - Comparer la taille des speckles avec les deux diffuseurs DG10-1500 et LSR-3005. FAIT
+    - Reprendre d'autres images des speckles avec les deux diffuseurs. Meilleurs résultats statistiques! FAIT
+    - Taille théorique?
   - Comment faire l'expérience avec le spot sur le mur? *probablement qu'il va falloir refaire le setup droit*
   - Mesurer expérimentalement la résolution axiale. Comparer avec la valeur théorique (?). 
     *La résolution axiale d'un objectif est dépendante de sa résolution latérale.*
@@ -21,8 +22,9 @@ Valérie :
  
  _______________________________________________________
  
- - Imagerie de poisson zèbre GCaMP (est-ce qu'il nous en reste?)
- - On est à boutte que Caféine ne fonctionne pas! WE NEED DELTA. 
+ - Imagerie de poisson zèbre GCaMP
+ - On est à boutte que Caféine ne fonctionne pas! WE NEED DELTA. FAIT
  - Aller voir Bertrand avec notre LSR. Tester son fonctionnement. 
  - Prendre des z-stacks avec le piezo électrique
+ - Transmission du LSR
  
