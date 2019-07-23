@@ -4,7 +4,7 @@ Maxence :
   - Optimiser la distance fibre-diffuseur (Uniformité vs. Intensité lumineuse à l'échantillon vs. taille des speckles)
   - Connecter le LSR à Nirvana (Par le Labjack)
   - Fabriquer une boîte pour protéger nos yeux des réflexions indésirables du laser
-    
+  - Graphique du spectre de transmission du LSR, mesuré avec le spectromètre d'Anaïs.
   
 Valérie : 
   - Comparer la taille des speckles avec les deux diffuseurs DG10-1500 et LSR-3005. FAIT
