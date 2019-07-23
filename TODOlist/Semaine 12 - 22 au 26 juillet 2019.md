@@ -2,7 +2,8 @@ Maxence :
   - Regrouper les informations sur l'optique et rédiger un document informatif. 
   - Expérience sur l'angle du diffuseur DG10-1500 et LSR-3005 : Regrouper les données en tableau, graphe...
   - Optimiser la distance fibre-diffuseur (Uniformité vs. Intensité lumineuse à l'échantillon vs. taille des speckles)
-    -  ...
+  - Connecter le LSR à Nirvana (Par le Labjack)
+  - Fabriquer une boîte pour protéger nos yeux des réflexions indésirables du laser
     
   
 Valérie : 
