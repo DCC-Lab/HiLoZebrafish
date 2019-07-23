@@ -22,7 +22,7 @@ Valérie :
  
  _______________________________________________________
  
- - Imagerie de poisson zèbre GCaMP
+ - Imagerie de poisson zèbre GCaMP sur le 2-photons bessel avec François. 
  - On est à boutte que Caféine ne fonctionne pas! WE NEED DELTA. FAIT
  - Aller voir Bertrand avec notre LSR. Tester son fonctionnement. 
  - Prendre des z-stacks avec le piezo électrique
