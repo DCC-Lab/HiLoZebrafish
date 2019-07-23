@@ -27,17 +27,12 @@ from sympy import symbols, solve, Function, Eq, solveset
 
 '''Gaussian fit curve'''
 
-<<<<<<< Updated upstream
+
 a =	91.2742
 b =	95.32937
 c = 1023.99992
 d = 128.54601
-=======
-a = 87.84735
-b = 98.01746
-c = 1024.00005
-d = 242.19578
->>>>>>> Stashed changes
+
 y = (b-a)/2 + a
 x = symbols('x', real=True)
 
