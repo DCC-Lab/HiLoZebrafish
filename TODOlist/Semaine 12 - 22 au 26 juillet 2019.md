@@ -22,8 +22,9 @@ Valérie :
  _______________________________________________________
  
  - Imagerie de poisson zèbre GCaMP sur le 2-photons bessel avec François. 
- - On est à boutte que Caféine ne fonctionne pas! WE NEED DELTA. FAIT
- - Aller voir Bertrand avec notre LSR. Tester son fonctionnement. 
- - Prendre des z-stacks avec le piezo électrique.
+ - On est à boutte que Caféine ne fonctionne pas! WE NEED DELTA. FAIT!
+ - Aller voir Bertrand avec notre LSR. Tester son fonctionnement. 600 ms pour s'activer!
+ - Prendre des z-stacks avec le piezo électrique. NE SEMBLE PAS FONCTIONNER 
+ - Prendre des z-stacks avec le sutter motion controller de Charles. 
  - Transmission du LSR avec le potentiomètre.
  
