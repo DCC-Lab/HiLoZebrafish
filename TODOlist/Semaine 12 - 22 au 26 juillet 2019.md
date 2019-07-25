@@ -6,6 +6,8 @@ Maxence :
   - Fabriquer une boîte pour protéger nos yeux des réflexions indésirables du laser FAIT!
   - Graphique du spectre de transmission du LSR, mesuré avec le spectromètre d'Anaïs. FAIT!
   - Tester l'algorithme HiLo avec le même sample, mais aves deux sources d'uniformité différentes (LSR vs. Scrambler)
+  - Rergarder la grosseur des speckles avec la fibre à Bliq NA = 0.63
+ 
   
 Valérie : 
   - Comparer la taille des speckles avec les deux diffuseurs DG10-1500 et LSR-3005. FAIT!
