@@ -1,9 +1,9 @@
 from math import sqrt, log, exp
 from sympy import symbols, solve, Function, Eq, solveset
 
-# a =	66377.8508
-# b = 3.93834
-# c = 0.71691
+# a =	8011.5307
+# b = 967.49638
+# c = 1226.38038
 # print(a, b, c, sep='\n')
 #
 # y = a/2
@@ -28,12 +28,12 @@ from sympy import symbols, solve, Function, Eq, solveset
 '''Gaussian fit curve'''
 
 
-a =	91.2742
-b =	95.32937
-c = 1023.99992
-d = 128.54601
+a =	3415.57639
+b =	8047.43809
+c = 965.19833
+d = 871.13712
 
-y = (b-a)/2 + a
+y = (b-6005)/2 + 6005
 x = symbols('x', real=True)
 
 f = ((-1 / (2 * d**2)) * x**2) + (((c / d**2) ) * x) - (c**2 / (2 * d**2)) - log((y-a) / (b-a))
@@ -42,7 +42,7 @@ f = ((-1 / (2 * d**2)) * x**2) + (((c / d**2) ) * x) - (c**2 / (2 * d**2)) - log
 solutions = solve(f, x)
 
 
-FWHM = solutions[1] - solutions[0]
+FWHM = (solutions[1] - solutions[0]) / 2
 
 
 print(a, b, c, d, solutions[0], solutions[1], FWHM, sep=' ')
