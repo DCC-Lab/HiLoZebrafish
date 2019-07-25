@@ -5,7 +5,7 @@ Maxence :
   - Connecter le LSR à Nirvana (Par le Labjack) *voir Bertrand*
   - Fabriquer une boîte pour protéger nos yeux des réflexions indésirables du laser FAIT!
   - Graphique du spectre de transmission du LSR, mesuré avec le spectromètre d'Anaïs. FAIT!
-  - Tester l'algorithme HiLo avec le même sample, mais aves deux sources d'uniformité différentes (LSR vs. Scrambler)
+  - Tester l'algorithme HiLo avec le même sample, mais aves deux sources d'uniformité différentes (LSR vs. Scrambler) FAIT!
   - Rergarder la grosseur des speckles avec la fibre à Bliq NA = 0.63
  
   
