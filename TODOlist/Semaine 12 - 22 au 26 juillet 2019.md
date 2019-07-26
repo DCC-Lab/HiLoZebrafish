@@ -31,6 +31,7 @@ Valérie :
  - Prendre des z-stacks avec le piezo électrique. NE SEMBLE PAS FONCTIONNER #malaise
  - Prendre des z-stacks avec le sutter motion controller de Charles. 
  - Transmission du LSR avec le potentiomètre. FAIT!
+ - Commander un autre objectif? 
  
  ______________________________________________________
  Discussion des speckles avec BLiq : 
