@@ -27,8 +27,15 @@ Valérie :
  
  - Imagerie de poisson zèbre GCaMP sur le 2-photons bessel avec François. FAIT!
  - On est à boutte que Caféine ne fonctionne pas! WE NEED DELTA. FAIT!
- - Aller voir Bertrand avec notre LSR. Tester son fonctionnement. 600 ms pour s'activer!
+ - Aller voir Bertrand avec notre LSR. Tester son fonctionnement. 600 ms pour s'activer! *faut parler à optotune*
  - Prendre des z-stacks avec le piezo électrique. NE SEMBLE PAS FONCTIONNER #malaise
  - Prendre des z-stacks avec le sutter motion controller de Charles. 
- - Transmission du LSR avec le potentiomètre. FAIT?
+ - Transmission du LSR avec le potentiomètre. FAIT!
+ 
+ ______________________________________________________
+ Discussion des speckles avec BLiq : 
+ - NA de l'objectif change la taille des speckles sur les images?
+ - Grossissement objectif change la taille des speckles sur les images?
+ - Taille plus petites des speckles diminue le flickering?
+ - Nombre de grits du diffuseur change le flickering? Comment il le change?
  
