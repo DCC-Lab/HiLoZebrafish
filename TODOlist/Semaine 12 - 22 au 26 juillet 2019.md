@@ -45,3 +45,28 @@ Valérie :
     - Expérience : Prendre des images d'un échantillon de FITC et de l'échantillon de cellules de rein de Bliq à l'aide d'une fibre de NA de 0.39, de 0.5 et de 0.63. Comparer le flickering observé sur chaque stack.
  - Nombre de grits du diffuseur change le flickering? Comment il le change?
     - Expérience : Prendre des images d'un échantillon de FITC et de l'échantillon de cellules de rein de Bliq à l'aide de diffuseurs de 120, 220 et 1500 grits. Tourner les diffuseurs lors de l'expérience pour observer du flickering. Comparer ensuite le flickering observé sur chaque stack.
+    
+_____________________________________________________________
+
+Rapop des 3 dernières semaines : 
+
+  - Tailles des speckles VALÉRIE
+    - Expliquerish la méthode employée
+    - Résultats avec le DG10-1500 et le LSR.
+
+  - Flickering MAXENCE
+    - Pourquoi c'est un problème?
+    - Montrer les deux stacks avec le scrambler et le LSR : même flickering. 
+      Les causes du flickering seraient donc bouger la fibre et bouger le diffuseur. 
+    - Solutions pour régler le problème. 
+
+  - Caractérisation des diffuseurs avec différents grits MAXENCE
+    - Montrer les graphes de wtv. 
+    
+  - Patron d'illumination VALÉRIE
+    - Max gray value : Comparaison DG10-1500 VS LSR
+    - Curvature : Comparaison DG10-1500 VS LSR 
+    
+  - Images et vidéo zebrafish BOTH
+    - Vidéos d'activité calcique
+    - Images HiLo
