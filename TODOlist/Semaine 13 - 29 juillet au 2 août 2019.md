@@ -1,6 +1,7 @@
 Maxence ou Valérie (à discuter) :
 
   - Regrouper les informations sur l'optique et rédiger un document informatif. 
+  - Revoir notre manière de mesurer la taille des speckles *Utiliser d'abord l'algorithme HiLo avant de faire la FFT de l'image?* ET *Utiliser la moyenne azimutale du spectre de puissance pour déterminer la grosseur moyenne des speckles (Voir Gabriel)*
   - Expérience sur l'angle du diffuseur DG10-600 avec le puissance mètre afin de situer le niveau de grit du LSR-3005. *Hypothèse : Niveau de grit entre le DG10-600 et le DG10-1500.*
   - Optimiser la distance fibre-diffuseur (Uniformité vs. Intensité lumineuse à l'échantillon vs. taille des speckles)
   - Rergarder la grosseur des speckles avec la fibre à Bliq de NA = 0.63. *Hypothèse : Les speckles à la sortie de la fibre seront plus petits qu'avec la fibre de NA de 0.5 puisque le NA est plus grand MAIS la taille de la source au diffuseur sera plus grande puisque le NA de la fibre est plus grand. La combinaison des deux effets inverses doit être déterminée expérimentalement.* Taille théorique? *On pourrait obtenir la plus petite taille théoriqe...*
