@@ -1,12 +1,15 @@
-Maxence ou Valérie (à discuter) :
-
+Maxence :
   - Regrouper les informations sur l'optique et rédiger un document informatif. 
+  
+Valérie :
+  - Commence dont ton affiche pour SN toi chose... 
+
+Maxence ou Valérie (à discuter) :
   - Revoir notre manière de mesurer la taille des speckles *Utiliser d'abord l'algorithme HiLo avant de faire la FFT de l'image?* ET *Utiliser la moyenne azimutale du spectre de puissance pour déterminer la grosseur moyenne des speckles (Voir Gabriel)*
   - Expérience sur l'angle du diffuseur DG10-600 avec le puissance mètre afin de situer le niveau de grit du LSR-3005. *Hypothèse : Niveau de grit entre le DG10-600 et le DG10-1500.*
   - Optimiser la distance fibre-diffuseur (Uniformité vs. Intensité lumineuse à l'échantillon vs. taille des speckles)
   - Rergarder la grosseur des speckles avec la fibre à Bliq de NA = 0.63. *Hypothèse : Les speckles à la sortie de la fibre seront plus petits qu'avec la fibre de NA de 0.5 puisque le NA est plus grand MAIS la taille de la source au diffuseur sera plus grande puisque le NA de la fibre est plus grand. La combinaison des deux effets inverses doit être déterminée expérimentalement.* Taille théorique? *On pourrait obtenir la plus petite taille théoriqe...*
   - Comment faire l'expérience avec le spot sur le mur? *Probablement qu'il va falloir refaire le setup droit*
-  - Commence dont ton affiche pour SN toi chose... 
   - Expérience sur l'illumination avec le LSR dans l'axe optique. Vérifier max gray value et curvature.  
   - Mesurer expérimentalement la résolution axiale. Comparer avec la valeur théorique (?). 
     *La résolution axiale d'un objectif est dépendante de sa résolution latérale.*
@@ -15,7 +18,6 @@ Maxence ou Valérie (à discuter) :
     *1 neurone = 4-5 um*
   - Expérience sur l'illumination avec le LSR dans l'axe optique. Vérifier max gray value et curvature. 
   - Voir Bertrand pour connecter le LSR (par LabJack) à Nirvana une fois que Steve Forest aura développé le circuit électronique pour éliminer le délai d'activation qui est actuellement de 600 ms.
-  - Prendre des z-stacks avec le piezo électrique. NE SEMBLE PAS FONCTIONNER #malaise
   - Prendre des z-stacks avec le sutter motion controller de Charles. 
   - Commander un autre objectif? *Une fois que les expérimentations concernant la discussion avec Bliq seront faites et analysées. En discuter avec Daniel*
   - Trouver une meilleure manière de générer de l'activité neuronale.
