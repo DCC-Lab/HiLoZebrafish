@@ -1,7 +1,7 @@
 Maxence :
   - Regrouper les informations sur l'optique et rédiger un document informatif. 
-    - Expérience sur l'angle du diffuseur DG10-600 avec le puissance mètre afin de situer le niveau de grit du LSR-3005. *Hypothèse : Niveau de grit entre le DG10-600 et le DG10-1500.*
-    - Prendre des z-stacks avec le sutter motion controller de Charles. 
+  - Expérience sur l'angle du diffuseur DG10-600 avec le puissance mètre afin de situer le niveau de grit du LSR-3005. *Hypothèse : Niveau de grit entre le DG10-600 et le DG10-1500.*
+  - Prendre des z-stacks avec le sutter motion controller de Charles. 
       
 Valérie :
   - Commence dont ton affiche pour SN toi chose...
