@@ -1,28 +1,27 @@
 Maxence :
   - Regrouper les informations sur l'optique et rédiger un document informatif. 
-  
+    - Expérience sur l'angle du diffuseur DG10-600 avec le puissance mètre afin de situer le niveau de grit du LSR-3005. *Hypothèse : Niveau de grit entre le DG10-600 et le DG10-1500.*
+    - Prendre des z-stacks avec le sutter motion controller de Charles. 
+      
 Valérie :
-  - Commence dont ton affiche pour SN toi chose... 
-
-Maxence ou Valérie (à discuter) :
+  - Commence dont ton affiche pour SN toi chose...
   - Revoir notre manière de mesurer la taille des speckles *Utiliser d'abord l'algorithme HiLo avant de faire la FFT de l'image?* ET *Utiliser la moyenne azimutale du spectre de puissance pour déterminer la grosseur moyenne des speckles (Voir Gabriel)*
-  - Expérience sur l'angle du diffuseur DG10-600 avec le puissance mètre afin de situer le niveau de grit du LSR-3005. *Hypothèse : Niveau de grit entre le DG10-600 et le DG10-1500.*
-  - Optimiser la distance fibre-diffuseur (Uniformité vs. Intensité lumineuse à l'échantillon vs. taille des speckles)
-  - Rergarder la grosseur des speckles avec la fibre à Bliq de NA = 0.63. *Hypothèse : Les speckles à la sortie de la fibre seront plus petits qu'avec la fibre de NA de 0.5 puisque le NA est plus grand MAIS la taille de la source au diffuseur sera plus grande puisque le NA de la fibre est plus grand. La combinaison des deux effets inverses doit être déterminée expérimentalement.* Taille théorique? *On pourrait obtenir la plus petite taille théoriqe...*
-  - Comment faire l'expérience avec le spot sur le mur? *Probablement qu'il va falloir refaire le setup droit*
-  - Expérience sur l'illumination avec le LSR dans l'axe optique. Vérifier max gray value et curvature.  
-  - Mesurer expérimentalement la résolution axiale. Comparer avec la valeur théorique (?). 
+  *Expérience prendre une image speckle, attendre 2 min, reprendre le même plan, attendre 2 min, reprendre le même plan...*
+  - Expérience Vérifier le grossissement expérimental de l'illuminateur #onsaitquecestà5mm
+  - Résolution axiale dépend de l'algorithme HiLo?
     *La résolution axiale d'un objectif est dépendante de sa résolution latérale.*
     *Plus petit objet pouvant être discernable par le système optique.*
     *Sectionnement optique ne doit pas être plus petit que la résolution axiale.* 
     *1 neurone = 4-5 um*
-  - Expérience sur l'illumination avec le LSR dans l'axe optique. Vérifier max gray value et curvature. 
+    
+À discuter avec Dan :
+  
+  - Rergarder la grosseur des speckles avec la fibre à Bliq de NA = 0.63. *Hypothèse : Les speckles à la sortie de la fibre seront plus petits qu'avec la fibre de NA de 0.5 puisque le NA est plus grand MAIS la taille de la source au diffuseur sera plus grande puisque le NA de la fibre est plus grand. La combinaison des deux effets inverses doit être déterminée expérimentalement.* Taille théorique? *On pourrait obtenir la plus petite taille théoriqe...*
   - Voir Bertrand pour connecter le LSR (par LabJack) à Nirvana une fois que Steve Forest aura développé le circuit électronique pour éliminer le délai d'activation qui est actuellement de 600 ms.
-  - Prendre des z-stacks avec le sutter motion controller de Charles. 
   - Commander un autre objectif? *Une fois que les expérimentations concernant la discussion avec Bliq seront faites et analysées. En discuter avec Daniel*
-  - Trouver une meilleure manière de générer de l'activité neuronale.
-  - Déterminer quels paramètres affectent la taille des speckles (NA, grossissement, Taille de la pupille d'entrée de l'objectif).
-  - Déterminer quels paramètres affectent l'intensité du flickering (Taille des speckles, niveau de grit des diffuseurs).
+      - Déterminer quels paramètres affectent la taille des speckles (NA, grossissement, Taille de la pupille d'entrée de l'objectif).
+      - Déterminer quels paramètres affectent l'intensité du flickering (Taille des speckles, niveau de grit des diffuseurs).
+  - Trouver une meilleure manière de générer de l'activité neuronale. (Solution odorante dans l'eau, installer des vis pour tenir le carré de verre dans lequel le poisson est placé, etc.)
   ______________________________________________________
    Discussion des speckles avec BLiq : 
  - NA de l'objectif change la taille des speckles sur les images? 
