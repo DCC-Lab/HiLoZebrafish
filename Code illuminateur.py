@@ -460,7 +460,6 @@ if __name__ == "__main__":
     #Sparq.illuminationFromObjective().display()
     # Sparq.illuminationFromSource().display()
     # Sparq.illuminationFromObjective().display()
-    # Sparq.illuminationFromSource().display()7
     # Sparq.illuminationFromObjectiveWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotuneAndDivergentLens().display()
