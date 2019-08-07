@@ -69,9 +69,9 @@ class Sparq:
         # the diffuser transmission VS output angle graph
         illumination.fanNumber = 11
         illumination.rayNumber = 3
-        illumination.showImages = False
+        illumination.showImages = True
 
-        illumination.append(Space(d=45))
+        illumination.append(Space(d=60))
         illumination.append(LExc)
         illumination.append(Space(d=20))
         illumination.append(L4)
@@ -87,8 +87,8 @@ class Sparq:
         illumination.append(L1)
         illumination.append(Space(d=80))
         illumination.append(Aperture(diameter=20, label="Nosepiece"))
-        illumination.append(Space(d=40))
-        illumination.append(obj)
+        illumination.append(Space(d=200))
+        # illumination.append(obj)
 
         return illumination
 
@@ -460,7 +460,7 @@ if __name__ == "__main__":
     #Sparq.illuminationFromObjective().display()
     # Sparq.illuminationFromSource().display()
     # Sparq.illuminationFromObjective().display()
-    # Sparq.illuminationFromSource().display()7
+    Sparq.illuminationFromSource().display()
     # Sparq.illuminationFromObjectiveWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotuneAndDivergentLens().display()
