@@ -12,6 +12,11 @@ distanceDiffuserScreen3 = 50  # mm
 distanceDiffuserScreen4 = 60  # mm
 distanceDiffuserScreen5 = 70  # mm
 
+
+# Load les files, transformer une colonne quelconque en liste que tu peux utiliser sur python
+# x : distances
+# y : puissances
+# a : angles
 x1 = np.loadtxt(filename1, usecols=0)
 y1 = np.loadtxt(filename1, usecols=1)
 y2 = np.loadtxt(filename1, usecols=2)
@@ -24,6 +29,10 @@ x2 = np.loadtxt(filename4, usecols=0)
 y7 = np.loadtxt(filename3, usecols=1)
 y8 = np.loadtxt(filename4, usecols=1)
 
+# Transformer les distances en angle avec la puissance mesurée avec le powermeter.
+# degrees : Fonction qui transforme des radians en degrées.
+# SOCAHTOAH
+# yn : y normalisé
 a1 = np.degrees(np.arctan((np.array(x1) - x1[-1]/2)/distanceDiffuserScreen1)) + 4
 y1n = np.array(y1)/max(y1)
 a2 = np.degrees(np.arctan((np.array(x1) - x1[-1]/2)/distanceDiffuserScreen2)) + 4
@@ -39,6 +48,7 @@ a8 = np.degrees(np.arctan((np.array(x2) - x2[-1]/2)/distanceDiffuserScreen3)) + 
 y7n = np.array(y7)/max(y7)
 y8n = np.array(y8)/max(y8)
 
+# Affecter les courbes à une variable, à quoi tu veux que ça ressemble.
 Data0, = plt.plot(a1, y1n, color='k', label='Grit 1500 3.6 cm')
 Data1, = plt.plot(a2, y2n, color='k', label='Grit 1500 4.6 cm', linestyle='--')
 Data2, = plt.plot(a3, y3n, color='b', label='Optotune Diffuser 5 cm')
@@ -47,6 +57,8 @@ Data4, = plt.plot(a5, y5n, color='r', label='Optotune Diffuser 7 cm')
 Data5, = plt.plot(a6, y6, color='k', label='Thorlabs Data', linestyle=':')
 Data6, = plt.plot(a7, y7n, label='Grit 600 7 cm')
 Data7, = plt.plot(a8, y8n, label='Grit 600 5 cm')
+
+# Le graphe en lui-même ressemble à quoi.
 plt.xlim([a3[0], a3[-1]])
 plt.ylim([0, 1.05])
 plt.yticks(fontsize=16)
@@ -58,5 +70,7 @@ plt.legend(handles=[Data0, Data1, Data2, Data3, Data4, Data5, Data6, Data7], fon
 plt.minorticks_on()
 fig = plt.gcf()
 fig.set_size_inches(12, 7)
-#fig.savefig('graphDiffuser1500gritPowermeter.pdf', bbox_inches='tight', dpi=600)
-plt.show()
+
+# Voir ou save ; un des deux.
+fig.savefig('graphDiffuser1500gritPowermeter.pdf', bbox_inches='tight', dpi=600)
+#plt.show()
