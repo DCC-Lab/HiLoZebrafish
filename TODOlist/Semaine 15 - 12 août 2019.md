@@ -1,9 +1,9 @@
 Mini setup : 
-- Faire expérience sur l'angle de diffusion du diffuseur DG10-120 et DG10-220. Mettre dans un graphe avec les autres diffuseurs (DG10-600 et DG10-1500)
+- Faire expérience sur l'angle de diffusion du diffuseur DG10-120 et DG10-220. Mettre dans un graphe avec les autres diffuseurs (DG10-600 et DG10-1500) *120 fait!!*
   - Calculer le diamètre théorique avec les NA obtenus. 
 - Mesurer le diamètre et la taille moyenne des speckles selon les fibres 0.22 et 0.5 NA et les diffuseurs 120 et 1500. 
-  - Modifier le setup pour avoir des lentilles plus grosses
-  - Rapprocher la fibre du diffuseur, produire un spot plus petit au diffuseur. 
+  - Modifier le setup pour avoir des lentilles plus grosses *ne fonctionne pas avec des 2 pouces, focal trop grosse*
+  - Rapprocher la fibre du diffuseur, produire un spot plus petit au diffuseur. *ne fonctionne pas!*
 
 Maxence : 
   - Présentations de 5 et 15 min à préparer (pour jeudi)
