@@ -1,23 +1,26 @@
 from math import sqrt, log, exp
 from sympy import symbols, solve, Function, Eq, solveset
 
-a =	66377.8508
-b = 3.93834
-c = 0.71691
-print(a, b, c, sep='\n')
 
-y = a/2
-print(y)
-x = symbols('x', real=True)
+'''Gaussian fit curve (with no offset)'''
 
-f = (-(1 / (2*c**2)) * x**2) + ((b/c**2) * x) + (-(b**2 / (2*c**2)) - log(y/a))
-print(f)
-
-solutions = solve(f, x)
-print(solutions)
-
-FWHM = solutions[1] - solutions[0]
-print(FWHM)
+# a =	66377.8508
+# b = 3.93834
+# c = 0.71691
+# print(a, b, c, sep='\n')
+#
+# y = a/2
+# print(y)
+# x = symbols('x', real=True)
+#
+# f = (-(1 / (2*c**2)) * x**2) + ((b/c**2) * x) + (-(b**2 / (2*c**2)) - log(y/a))
+# print(f)
+#
+# solutions = solve(f, x)
+# print(solutions)
+#
+# FWHM = solutions[1] - solutions[0]
+# print(FWHM)
 
 
 
@@ -25,17 +28,12 @@ print(FWHM)
 # fwhm = 2 * stddev * sqrt(2 * log(10))
 # print(fwhm)
 
-'''Gaussian fit curve'''
+'''Gaussian fit curve (with offset)'''
 
-a = 83.94127
-b = 103.82069
-c = 1023.99996
-d = 274.45004
-
-a =	88.05551
-b =	98.79399
-c = 1023.99999
-d = 199.33591
+a = 106.74274
+b = 111.31094
+c = 512.00176
+d = 193.94274
 
 y = (b-a)/2 + a
 x = symbols('x', real=True)
