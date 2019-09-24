@@ -5,8 +5,8 @@ import numpy as np
 progression du microscope """
 
 # Objective
-ObjectiveNA = 0.5
-ObjectiveWorkingDistance = 3.5
+ObjectiveNA = 0.3
+ObjectiveWorkingDistance = 4.2
 FocalOfLensHabituallyUsedWithObjective = 180
 ObjectiveMagnification = 20
 FocalObjective = FocalOfLensHabituallyUsedWithObjective/ObjectiveMagnification
