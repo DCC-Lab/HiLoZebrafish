@@ -27,13 +27,12 @@ from sympy import symbols, solve, Function, Eq, solveset
 
 '''Gaussian fit curve'''
 
+a = 91.19781
+b = 93.15748
+c = 1023.91617
+d = 33.93568
 
-a =	3415.57639
-b =	8047.43809
-c = 965.19833
-d = 871.13712
-
-y = (b-6005)/2 + 6005
+y = (b-a)/2 + a
 x = symbols('x', real=True)
 
 f = ((-1 / (2 * d**2)) * x**2) + (((c / d**2) ) * x) - (c**2 / (2 * d**2)) - log((y-a) / (b-a))
@@ -45,4 +44,4 @@ solutions = solve(f, x)
 FWHM = (solutions[1] - solutions[0]) / 2
 
 
-print(a, b, c, d, solutions[0], solutions[1], FWHM, sep=' ')
+print(a, b, c, d, solutions[0], solutions[1], FWHM, sep='\t')
