@@ -5,14 +5,14 @@ import numpy as np
 progression du microscope """
 
 # Objective
-ObjectiveNA = 0.3
-ObjectiveWorkingDistance = 4.2
+ObjectiveNA = 1.05
+ObjectiveWorkingDistance = 2
 FocalOfLensHabituallyUsedWithObjective = 180
-ObjectiveMagnification = 20
+ObjectiveMagnification = 25
 FocalObjective = FocalOfLensHabituallyUsedWithObjective/ObjectiveMagnification
 ObjectiveDiameterEntrancePupil = 2*FocalObjective*ObjectiveNA
 FocalOfTubeLens = 180
-FieldNumber = 26.5
+FieldNumber = 18
 Magnification = FocalOfTubeLens/FocalObjective
 ObjectiveMaximumFOV = FieldNumber/Magnification
 
