@@ -5,14 +5,23 @@ import numpy as np
 progression du microscope """
 
 # Objective
+<<<<<<< Updated upstream
 ObjectiveNA = 0.5
 ObjectiveWorkingDistance = 3.5
+=======
+ObjectiveNA = 1.0
+ObjectiveWorkingDistance = 2
+>>>>>>> Stashed changes
 FocalOfLensHabituallyUsedWithObjective = 180
 ObjectiveMagnification = 20
 FocalObjective = FocalOfLensHabituallyUsedWithObjective/ObjectiveMagnification
 ObjectiveDiameterEntrancePupil = 2*FocalObjective*ObjectiveNA
 FocalOfTubeLens = 180
+<<<<<<< Updated upstream
 FieldNumber = 26.5
+=======
+FieldNumber = 22
+>>>>>>> Stashed changes
 Magnification = FocalOfTubeLens/FocalObjective
 ObjectiveMaximumFOV = FieldNumber/Magnification
 
@@ -22,8 +31,8 @@ CameraMaximumFOV = CameraDiagonal/Magnification
 CameraPixelSize = 6.5  # µm
 
 # Suite objective
-ObjectiveINV = ObjectiveNA*((CameraMaximumFOV*0.5)**2)*np.pi
-ObjectiveNAWithINV = ObjectiveINV/(((ObjectiveDiameterEntrancePupil*0.5)**2)*np.pi)
+ObjectiveINV = ObjectiveNA*(ObjectiveMaximumFOV*0.5)
+ObjectiveNAWithINV = ObjectiveINV/(ObjectiveDiameterEntrancePupil*0.5)
 SourceMinAngleAtObjective = np.degrees(ObjectiveNAWithINV)
 
 # Illuminator system, see "Code illuminateur.py, The last lens before objective is at this moment L1 but it will

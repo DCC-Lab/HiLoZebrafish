@@ -9,11 +9,11 @@ from raytracing import *
 class test(Objective):
     def __init__(self):
         super(test, self).__init__(f=180/20,
-                                   NA=0.5,
-                                   focusToFocusLength=45,
-                                   backAperture=11,
-                                   workingDistance=3.5,
-                                   label='UMPLFN20XW',
+                                   NA=1.0,
+                                   focusToFocusLength=75,
+                                   backAperture=18,
+                                   workingDistance=2,
+                                   label='XLUMPLFN20XW',
                                    url="https://www.olympus-lifescience.com/en/objectives/lumplfln-w/")
 
 class Sparq:
@@ -64,7 +64,7 @@ class Sparq:
 
         illumination = ImagingPath()
         illumination.label = "Sparq illumination with Excelitas"
-        illumination.objectHeight = 3.15
+        illumination.objectHeight = 5
         illumination.fanAngle = 0.25 #0.087266  # NAdiffuser=1 alors mettre 0.5 ou 1?    # At the moment, NA = 0.122 because of
         # the diffuser transmission VS output angle graph
         illumination.fanNumber = 11
@@ -457,8 +457,13 @@ class Sparq:
 
 if __name__ == "__main__":
 
+<<<<<<< Updated upstream
     #Sparq.illuminationFromObjective().display()
     # Sparq.illuminationFromSource().display()
+=======
+    # Sparq.illuminationFromObjective().display()
+    Sparq.illuminationFromSource().display()
+>>>>>>> Stashed changes
     # Sparq.illuminationFromObjective().display()
     Sparq.illuminationFromSource().display()
     # Sparq.illuminationFromObjectiveWithOptotune().display()
