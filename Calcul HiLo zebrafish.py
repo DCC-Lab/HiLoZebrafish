@@ -5,23 +5,19 @@ import numpy as np
 progression du microscope """
 
 # Objective
-<<<<<<< Updated upstream
+
 ObjectiveNA = 0.5
 ObjectiveWorkingDistance = 3.5
-=======
+
 ObjectiveNA = 1.0
 ObjectiveWorkingDistance = 2
->>>>>>> Stashed changes
 FocalOfLensHabituallyUsedWithObjective = 180
 ObjectiveMagnification = 20
 FocalObjective = FocalOfLensHabituallyUsedWithObjective/ObjectiveMagnification
 ObjectiveDiameterEntrancePupil = 2*FocalObjective*ObjectiveNA
 FocalOfTubeLens = 180
-<<<<<<< Updated upstream
 FieldNumber = 26.5
-=======
 FieldNumber = 22
->>>>>>> Stashed changes
 Magnification = FocalOfTubeLens/FocalObjective
 ObjectiveMaximumFOV = FieldNumber/Magnification
 
