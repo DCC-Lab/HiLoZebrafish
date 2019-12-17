@@ -457,13 +457,11 @@ class Sparq:
 
 if __name__ == "__main__":
 
-<<<<<<< Updated upstream
+
     #Sparq.illuminationFromObjective().display()
     # Sparq.illuminationFromSource().display()
-=======
     # Sparq.illuminationFromObjective().display()
     Sparq.illuminationFromSource().display()
->>>>>>> Stashed changes
     # Sparq.illuminationFromObjective().display()
     Sparq.illuminationFromSource().display()
     # Sparq.illuminationFromObjectiveWithOptotune().display()
