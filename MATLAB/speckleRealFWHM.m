@@ -1,3 +1,5 @@
+% Autocorrelation process
+
 function [wx, wy, normCorr] = speckleFWHM(image)
     image = double(image) - mean(mean(double(image)));
     normCorr=normxcorr2(image,image);

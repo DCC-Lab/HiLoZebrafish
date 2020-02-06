@@ -1,4 +1,9 @@
-function [wx, wy, normCorr] = speckleFWHMFourier(image)
+%Take your image, 
+%FT, 
+%make the product of the FT with its complex conjugate, 
+%inverse FT. 
+
+function [wx, wy, normCorr] = speckleRealFWHMFourier(image)
     w1 = size(image,1);
     w2 = size(image,2);
     image = double(image) - mean(mean(double(image)));
