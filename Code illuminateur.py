@@ -454,6 +454,19 @@ class Sparq:
 
         return illumination
 
+    def Optique():
+        L1 = Lens(f=200)
+        Lobj = Lens(f=5)
+
+        illumination = ImagingPath()
+        illumination.showImage = True
+
+        illumination.append(Space(d=10))
+        illumination.append(Lobj)
+        illumination.append(Space(d=205))
+        illumination.append(L1)
+        illumination.append(Space(2000))
+
 
 if __name__ == "__main__":
 
@@ -461,9 +474,9 @@ if __name__ == "__main__":
     #Sparq.illuminationFromObjective().display()
     # Sparq.illuminationFromSource().display()
     # Sparq.illuminationFromObjective().display()
-    Sparq.illuminationFromSource().display()
+    # Sparq.illuminationFromSource().display()
     # Sparq.illuminationFromObjective().display()
-    Sparq.illuminationFromSource().display()
+    # Sparq.illuminationFromSource().display()
     # Sparq.illuminationFromObjectiveWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotune().display()
     # Sparq.illuminationFromSourceWithOptotuneAndDivergentLens().display()
@@ -474,3 +487,4 @@ if __name__ == "__main__":
     # Sparq.investigationOptotuneAndCamera().display()
     # Sparq.illuminationFormSourceWithOptotuneAndCamera().display()
     Sparq.investigationObjectiveBehaviour().display()
+    # Sparq.Optique().display()

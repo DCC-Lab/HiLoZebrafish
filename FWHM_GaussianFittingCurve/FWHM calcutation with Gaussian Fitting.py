@@ -30,10 +30,10 @@ from sympy import symbols, solve, Function, Eq, solveset
 
 '''Gaussian fit curve (with offset)'''
 
-a = 106.74274
-b = 111.31094
-c = 512.00176
-d = 193.94274
+a = 91.39377
+b = 95.03622
+c = 1023.99982
+d = 87.54232
 
 y = (b-a)/2 + a
 x = symbols('x', real=True)
@@ -45,4 +45,4 @@ solutions = solve(f, x)
 FWHM = solutions[1] - solutions[0]
 
 
-print(a, b, c, d, solutions[0], solutions[1], FWHM, sep='\n')
+print(a,b,c,d,solutions[0],solutions[1],FWHM,sep='\t')
