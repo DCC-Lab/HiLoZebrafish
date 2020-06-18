@@ -4,7 +4,7 @@ import tifffile
 import os
 from scipy.ndimage import gaussian_filter
 
-nb = 20
+nb = 31
 fname = rf"20190924-200ms_20mW_Ave15_Gray_10X0.4_{nb}.tif"
 
 p = os.path.dirname(os.path.join(os.getcwd(), "..", ".."))
