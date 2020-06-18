@@ -72,8 +72,8 @@ superiorBound = halfMax + halfMax * relativeErrorHalfMax / 100
 pointsForFW = np.where((verticalSlice >= inferiorBound) & (verticalSlice <= superiorBound))[0]
 print(pointsForFW)
 middlePoint = np.argmax(verticalSlice)  # Find the middle point to separate the values at the left and at the right
-left = np.mean(pointsForFW[np.where(pointsForFW < middlePoint)[-1]])
-right = np.mean(pointsForFW[np.where(pointsForFW > middlePoint)[-1]])
+left = np.mean(pointsForFW[pointsForFW < middlePoint])
+right = np.mean(pointsForFW[pointsForFW > middlePoint])
 print(f"left: {left}")
 print(f"right: {right}")
 FWHM = right - left
@@ -91,8 +91,8 @@ superiorBound = halfMax + halfMax * relativeErrorHalfMax / 100
 pointsForFW = np.where((horizontalSlice >= inferiorBound) & (horizontalSlice <= superiorBound))[0]
 print(pointsForFW)
 middlePoint = np.argmax(horizontalSlice)  # Find the middle point to separate the values at the left and at the right
-left = np.mean(pointsForFW[np.where(pointsForFW < middlePoint)[-1]])
-right = np.mean(pointsForFW[np.where(pointsForFW > middlePoint)[-1]])
+left = np.mean(pointsForFW[pointsForFW < middlePoint])
+right = np.mean(pointsForFW[pointsForFW > middlePoint])
 print(f"left: {left}")
 print(f"right: {right}")
 FWHM = right - left
