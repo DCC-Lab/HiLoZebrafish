@@ -7,7 +7,7 @@ import os
 from scipy.ndimage import gaussian_filter
 from scipy.optimize import curve_fit
 
-nb = 20
+nb = 19
 fname = rf"20190924-200ms_20mW_Ave15_Gray_10X0.4_{nb}.tif"
 
 p = os.path.dirname(os.path.join(os.getcwd(), "..", ".."))
@@ -38,7 +38,6 @@ plt.show()
 
 f = f_img
 
-somme = np.sum(f, 1)
 moyenne = np.mean(f, 0)
 
 maximum = np.max(moyenne)
@@ -73,7 +72,7 @@ print(FWHM)
 shape = len(dataNorm)
 print(shape)
 
-print(2 * shape / FWHM)
+print(4 * shape / FWHM)
 
 x = np.arange(shape)
 y = dataNorm
@@ -92,4 +91,8 @@ plt.plot(x, y, 'b+:', label='data')
 plt.plot(x, Gauss(x, *popt), 'r-', label='fit')
 plt.legend()
 plt.show()
-print(abs(popt[-1]))
+sigma = abs(popt[-1])
+FWHM = sigma * 2 * (2 * np.log(2)) ** .5
+print(sigma)
+print(pcov)
+print(4 * shape / FWHM)
