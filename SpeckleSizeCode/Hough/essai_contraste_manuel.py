@@ -60,13 +60,13 @@ class HoughImage:
     
     def circleData(self):
         self.houghDetect()
-        moy = 0
-        div = 0
+        ಠ_ಠ = 0
+        ( º_ºノ) = 0
         for (x,y,r) in self.detection_cercles[0, :]:
-            moy += r
-            div += 1
+            ಠ_ಠ += r
+            ( º_ºノ) += 1
             self.radiusArray += [r]
-        self.AvgR = moy // div
+        self.AvgR = ಠ_ಠ // ( º_ºノ)
         self.nbCercles = len(self.radiusArray)
     
     def showImage(self, nom):
