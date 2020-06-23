@@ -59,6 +59,7 @@ class HoughImage:
             cv2.circle(self.output, (x,y), r, (255, 0 , 0), 1)
     
     def circleData(self):
+        # I used the emojis as variables to get the average radius value in my array
         self.houghDetect()
         ಠ_ಠ = 0
         ( º_ºノ) = 0
