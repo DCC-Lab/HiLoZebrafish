@@ -1,6 +1,8 @@
 import numpy as np
 from matplotlib import pyplot as plt
 from cv2 import cv2
+import statistics as st
+from operator import itemgetter
 
 class HoughImage:
 
@@ -13,6 +15,7 @@ class HoughImage:
         self.nbCercles = 0
         self.thresh = self.img.copy()
         self.AvgBrightness = 0
+        self.median = 0
     
     def avgScaleVal(self):
         gray = 0 
@@ -31,10 +34,41 @@ class HoughImage:
         #the filter is not perfect for this section, some images may work better than others. It is possible to play with the
         #integers to get a better contrast depending on the image. They correspond to the change in grayscale value based on the
         #grayscale value of the analysed pixel.
+        arrayformedian = []
+        dicof = {}
         for i in range(length):
             for j in range(width):
-                if self.img[i,j] >= self.AvgBrightness + 1:
-                    if self.img[i,j] < self.AvgBrightness + 3:
+                arrayformedian.append(self.img[i,j])
+                if self.img[i,j] not in dicof.keys():
+                    dicof[self.img[i,j]] = 1
+                else:
+                    dicof[self.img[i,j]] = dicof[self.img[i,j]] + 1
+        dicof_items = dicof.items()
+        sorted_items = sorted(dicof_items) 
+
+        self.median = st.median(arrayformedian)
+        maximum = max(arrayformedian)
+        minimum = min(arrayformedian)
+        rangegr = maximum - minimum
+        print(maximum)
+        print(minimum)
+        print(self.median)
+        print(self.AvgBrightness)
+        print(dicof)
+        print(sorted_items)
+        print(length)
+        print(width)
+
+        nbpix = length * width
+        thresh1 = nbpix * 0.59
+        thresh2 = nbpix * 0.86
+        thresh3 = nbpix * 0.99
+        
+
+        for i in range(length):
+            for j in range(width):
+                if self.img[i,j] >= self.AvgBrightness + 1 :
+                    if self.img[i,j] < self.AvgBrightness + 3 :
                         self.thresh[i,j] = self.img[i,j] + 10
                     if self.img[i,j] > self.AvgBrightness + 8:
                         self.thresh[i,j] = 255
@@ -45,6 +79,7 @@ class HoughImage:
                         self.thresh[i,j] = 0
                     else:
                         self.thresh[i,j] = self.img[i,j] - 10
+        
 
     def houghDetect(self):
         self.Imaging()
@@ -53,7 +88,7 @@ class HoughImage:
         # for the canny edge detector, param2 is the minimal grayscale value for a center to be detected, minRadius is the minimal
         #radius of the circle and the same logic applies to maxRadius. If the min and max values are unknown it is possible to set
         #them to 0
-        cercles = cv2.HoughCircles(self.thresh, cv2.HOUGH_GRADIENT, 1, 6, param1=10, param2=7, minRadius=1, maxRadius=6)
+        cercles = cv2.HoughCircles(self.thresh, cv2.HOUGH_GRADIENT, 1, 6, param1=10, param2=8, minRadius=1, maxRadius=6)
         self.detection_cercles = np.uint16(np.around(cercles))
         for (x, y, r) in self.detection_cercles[0, :]:
             cv2.circle(self.output, (x,y), r, (255, 0 , 0), 1)
