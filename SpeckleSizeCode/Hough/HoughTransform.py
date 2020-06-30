@@ -6,7 +6,7 @@ from operator import itemgetter
 
 class HoughImage:
 
-    def __init__(self,path):
+    def __init__(self,path,style='none'):
         self.img = cv2.imread(path,0)
         self.output = self.img.copy()
         self.AvgR = 0
@@ -16,6 +16,7 @@ class HoughImage:
         self.thresh = self.img.copy()
         self.AvgBrightness = 0
         self.median = 0
+        self.style = style
     
     def avgScaleVal(self):
         gray = 0 
@@ -60,25 +61,48 @@ class HoughImage:
         print(width)
 
         nbpix = length * width
-        thresh1 = nbpix * 0.59
-        thresh2 = nbpix * 0.86
-        thresh3 = nbpix * 0.99
+        thresh1 = nbpix * 0.66
+        thresh2 = nbpix * 0.87
+        thresh3 = nbpix * 0.94
         
-
-        for i in range(length):
-            for j in range(width):
-                if self.img[i,j] >= self.AvgBrightness + 1 :
-                    if self.img[i,j] < self.AvgBrightness + 3 :
-                        self.thresh[i,j] = self.img[i,j] + 10
-                    if self.img[i,j] > self.AvgBrightness + 8:
+        threshvalue = 0
+        val1 = 0
+        val2 = 0
+        val3 = 0
+        for colours in sorted_items:
+            threshvalue += colours[1]
+            if threshvalue >= thresh1 and threshvalue < thresh2 and val1 == 0:
+                val1 = colours[0]
+            if threshvalue >= thresh2 and threshvalue < thresh3 and val2 == 0:
+                val2 = colours[0]
+            if threshvalue >= thresh3 and val3 == 0:
+                val3 = colours[0]
+        
+        print(val1)
+        print(val2)
+        print(val3)
+        if self.style == 'full_threshold':
+            for i in range(length):
+                for j in range(width):
+                    if self.img[i,j] > val3 :
                         self.thresh[i,j] = 255
-                    if self.img[i,j] >=self.AvgBrightness + 3 and self.img[i,j] <= self.AvgBrightness + 8:
-                        self.thresh[i,j] = self.img[i,j] + 55
-                if self.img[i,j] < self.AvgBrightness + 1:
-                    if self.img[i,j] < 10:
+                    if self.img[i,j] <= val3:
                         self.thresh[i,j] = 0
-                    else:
-                        self.thresh[i,j] = self.img[i,j] - 10
+        if self.style == 'none':
+            for i in range(length):
+                for j in range(width):
+                    if self.img[i,j] >= val1 :
+                        if self.img[i,j] < val2 :
+                            self.thresh[i,j] = self.img[i,j] + 10
+                        if self.img[i,j] >val3:
+                            self.thresh[i,j] = 255
+                        if self.img[i,j] >= val2 and self.img[i,j] <= val3:
+                            self.thresh[i,j] = self.img[i,j] + 55
+                    if self.img[i,j] < val1:
+                        if self.img[i,j] < 10:
+                            self.thresh[i,j] = 0
+                        else:
+                            self.thresh[i,j] = self.img[i,j] - 10
         
 
     def houghDetect(self):
@@ -134,7 +158,7 @@ class HoughImage:
 
 
 # enter the path of the image here; make sure that it is a raw string
-q = HoughImage(r"C:\Users\ludod\Desktop\Stage_CERVO\speckle_imagery\speckle1.tif")
+q = HoughImage(r"C:\Users\ludod\Desktop\Stage_CERVO\speckle_imagery\20190924-SpeckleTest_10X0.4NA\20190924-200ms_20mW_Ave15_Gray_10X0.4_31.tif",style='full_threshold')
 
 q.showGraph()
 q.showImage('all')
