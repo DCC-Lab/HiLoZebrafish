@@ -11,6 +11,8 @@ fname = rf"20190924-200ms_20mW_Ave15_Gray_10X0.4_{nb}.tif"
 p = os.path.dirname(os.path.join(os.getcwd(), "..", ".."))
 path = os.path.join(p, "MATLAB", fname)
 
+path = "simulation_2000x2000_1600circles_1separation_30radius.png"
+
 if path.endswith("tif"):
     img = tifffile.imread(path)
 else:

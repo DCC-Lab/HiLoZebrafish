@@ -7,11 +7,13 @@ import os
 from scipy.ndimage import gaussian_filter
 from scipy.optimize import curve_fit
 
-nb = 19
+nb = 10
 fname = rf"20190924-200ms_20mW_Ave15_Gray_10X0.4_{nb}.tif"
 
 p = os.path.dirname(os.path.join(os.getcwd(), "..", ".."))
 path = os.path.join(p, "MATLAB", fname)
+
+path = "simulation_2000x2000_1000circles_3separation_10radius.png"
 
 if path.endswith("tif"):
     img = tifffile.imread(path)
