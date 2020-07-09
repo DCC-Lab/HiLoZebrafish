@@ -28,7 +28,7 @@ class TiffFileGaussianNormalization(GaussianNormalization):
     def saveToOriginalFormat(self, name: str, stdDevNormalization: float = 75):
         if self.normalized is None:
             self.normalize(stdDevNormalization)
-        if not name.endswith(".tif") or not name.endswith(".tiff"):
+        if not name.endswith(".tif") and not name.endswith(".tiff"):
             name += ".tif"
         tifffile.imwrite(name, self.image)
 
@@ -48,19 +48,13 @@ class PNGFileGaussianNormalization(GaussianNormalization):
 
 
 if __name__ == '__main__':
-    p = os.path.dirname(os.path.join(os.getcwd(), "..", ".."))
-    path = os.path.join(p, "MATLAB")
-    allFnames = os.listdir(path)
-    temp = []
-    for fname in allFnames:
-        if fname.endswith("tif"):
-            temp.append(fname)
-    allFnames = temp
-    current = 0
-    total = len(allFnames)
-    for fname in allFnames:
-        fullPath = os.path.join(path, fname)
-        tif = TiffFileGaussianNormalization(fullPath)
-        tif.saveToOriginalFormat(fullPath + "_GaussianNorm_75StdDev.tif")
-        current += 1
-        print(f"{current} / {total} processed.")
+    # This is where you can normalize and save files.
+    # This is an example that normalizes avery tif file in MATLAB folder.
+    for nb in range(1, 32):
+        fname = r"20190924-200ms_20mW_Ave15_Gray_10X0.4_{}.tif".format(nb)
+        p = os.path.dirname(os.path.join(os.getcwd(), "..", ".."))
+        path = os.path.join(p, "MATLAB", fname)
+        newName = path[:-4] + "_GaussianNorm_75StdDev.tif"
+
+        tif = TiffFileGaussianNormalization(path)
+        tif.saveToOriginalFormat(newName)
