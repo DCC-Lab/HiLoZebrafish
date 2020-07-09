@@ -54,7 +54,8 @@ if __name__ == '__main__':
         fname = r"20190924-200ms_20mW_Ave15_Gray_10X0.4_{}.tif".format(nb)
         p = os.path.dirname(os.path.join(os.getcwd(), "..", ".."))
         path = os.path.join(p, "MATLAB", fname)
-        newName = path[:-4] + "_GaussianNorm_75StdDev.tif"
+        newName = path[:-4] + "_GaussianNorm_75StdDev.tif" # We don't want the previous .tif in the new name
 
         tif = TiffFileGaussianNormalization(path)
         tif.saveToOriginalFormat(newName)
+        print(f"{nb} / 31 processed")
