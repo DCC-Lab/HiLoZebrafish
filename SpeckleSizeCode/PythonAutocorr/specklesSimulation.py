@@ -1,9 +1,11 @@
-import cv2 as cv2
+import tifffile as tfile
 import numpy as np
 import warnings
 import matplotlib.pyplot as plt
 import itertools
 import random
+import cv2
+from scipy.ndimage import gaussian_filter
 
 
 class RandomPositionGenerator:
@@ -25,7 +27,7 @@ class RandomPositionGenerator:
     def saveImage(self, name: str):
         if self._image is None:
             raise AttributeError("The simulation is not done. Please generate the image first.")
-        cv2.imwrite(name, self._image)
+        tfile.imwrite(name, self._image)
 
     def showImage(self):
         if self._image is None:
@@ -111,63 +113,115 @@ class GaussianGenerator(RandomPositionGenerator):
         return np.exp(-((arrX - muX) ** 2 / (2 * sigma ** 2) + (arrY - muY) ** 2 / (2 * sigma ** 2)))
 
 
-class SpeckleSimulation:
+class SpeckleSimulationWithSource:
 
-    def __init__(self, imageShape: int, radius: int = None):
+    def __init__(self, imageShape: int):
         if imageShape <= 0:
             raise ValueError("The shape of the image must be strictly positive (>0).")
-        if radius is not None and radius <= 0:
-            raise ValueError("The radius must be strictly positive (>0).")
-        if radius is None:
-            radius = imageShape // 2
-        self.__radius = radius
-        self.__imageShape = (imageShape, imageShape)
+        self._imageShape = (imageShape, imageShape)
         self._image = None
-        self.__circleGenerated = False
-        self.__fftDone = False
-
-    def generateCircle(self, position: tuple):
-        self._image = np.zeros(self.__imageShape)
-        self._image = cv2.circle(self._image, position, self.__radius, 1, -1)
-        plt.imshow(self._image)
-        plt.show()
-        self.__circleGenerated = True
-
-    def spectralManipulations(self):
-        if not self.__circleGenerated:
-            pos = (self.__imageShape[0] // 2, self.__imageShape[1] // 2)
-            self.generateCircle(pos)
-        fft = np.abs(np.fft.fft2(self._image)) ** 2
-        self._image = fft.real
-        self.__fftDone = True
 
     @property
     def image(self):
-        if not self.__fftDone:
+        if self._image is None:
             raise AttributeError("The simulation is not done. Please do the spectral manipulations.")
         return self._image
 
     def saveImage(self, name: str):
         if self._image is None:
             raise AttributeError("The simulation is not done. Please do the spectral manipulations.")
-        cv2.imwrite(name, self._image)
+        tfile.imwrite(name, self._image)
 
     def showImage(self):
         if self._image is None:
             raise AttributeError("The simulation is not done. Please do the spectral manipulations.")
-        plt.imshow(np.log(self._image))
+        plt.imshow(self.image, cmap="gray")
         plt.show()
+
+    def _generatePhases(self):
+        phases = np.random.uniform(-np.pi, np.pi, self._imageShape)
+        return np.exp(1j * phases)
+
+
+class SpeckleSimulationWithCircularSource(SpeckleSimulationWithSource):
+
+    def __init__(self, imageShape: int, diameter: int = None, amplitude: float = 1):
+        super(SpeckleSimulationWithCircularSource, self).__init__(imageShape)
+        if diameter is not None and diameter <= 0:
+            raise ValueError("The diameter must be strictly positive (>0).")
+        if diameter is None:
+            diameter = imageShape // 2
+        self.__radius = diameter // 2
+        if amplitude <= 0:
+            raise ValueError("The amplitude of the gaussian must be strictly positive (>0).")
+        self.__amplitude = amplitude
+
+    def __generateCircle(self):
+        position = (self._imageShape[0] // 2, self._imageShape[1] // 2)
+        self._image = np.zeros(self._imageShape)
+        self._image = cv2.circle(self._image, position, self.__radius, self.__amplitude, -1)
+        self._image = self._image.astype(complex)
+        self._image *= self._generatePhases()
+
+    def spectralManipulations(self):
+        self.__generateCircle()
+        fft = np.abs(np.fft.fft2(self._image)) ** 2
+        self._image = fft.real
+
+
+class SpeckleSimulationWithGaussianSource(SpeckleSimulationWithSource):
+    def __init__(self, imageShape: int, sigma: float, amplitude: float = 1):
+        super(SpeckleSimulationWithGaussianSource, self).__init__(imageShape)
+        if sigma <= 0:
+            raise ValueError("The standard deviation of the gaussian must be strictly positive (>0).")
+        self.__sigma = sigma
+        if amplitude <= 0:
+            raise ValueError("The amplitude of the gaussian must be strictly positive (>0).")
+        self.__amplitude = amplitude
+
+    def __generateGaussian(self):
+        y, x = np.indices(self._imageShape) - self._imageShape[0] // 2
+        gauss = self.__amplitude * np.exp(-(x ** 2 / (2 * self.__sigma ** 2) + y ** 2 / (2 * self.__sigma ** 2)))
+        self._image = gauss
+        self._image = self._image * self._generatePhases()
+
+    def spectralManipulations(self):
+        self.__generateGaussian()
+        fft = np.abs(np.fft.fft2(self._image)) ** 2
+        self._image = fft.real
 
 
 if __name__ == '__main__':
+    # minSize = 4
+    # amp = 100
+    # c = SpeckleSimulationWithCircularSource(1000, 1000 // minSize, amp)
+    # c.spectralManipulations()
+    # c.showImage()
+
+
+    # sigmas = [4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 32]
+    # for sigma in sigmas:
+    #     g = SpeckleSimulationWithGaussianSource(1000, sigma)
+    #     g.spectralManipulations()
+    #     #g.saveImage(f"gaussianWithPhasesSimulations\\{sigma}sigmaGaussianWithPhasesSimulations.tiff")
+
+    sigma = 4
+    amp = 100
+    g = SpeckleSimulationWithGaussianSource(1000, 1000 / sigma, amp)
+    g.spectralManipulations()
+    g.showImage()
+
+    exit()
+
     x = 1000
     y = 1000
-    sigma = 32
-    separation = 25
-    nbGaussians = 2500 // 3
+    sigma = 20
+    separation = 10
+    nbGaussians = 1100
     g = GaussianGenerator((y, x), sigma, minimumSpacing=separation)
-    image = g.generateGaussians(int(nbGaussians))
+    g.generateGaussians(int(nbGaussians))
+    img = g.image
     g.showImage()
-    ok = input("Continue?\n")
+    ok = input("Save image?\n")
     if ok.lower() == "y":
-        g.saveImage(f"{nbGaussians}gaussians_{x}x{y}_{sigma}sigma_{separation}separation.png")
+        g.saveImage(f"gaussianSimulations\\{nbGaussians}gaussians_{x}x{y}_{sigma}sigma_{separation}separation.tiff")
