@@ -41,8 +41,9 @@ class FullyDeveloppedSpeckleSimulationWithSource:
         sim = self.simulation
         if sim is None:
             raise ValueError("No simulation to extract intensity histogram.")
-        plt.hist(sim.ravel(), 256)
+        values, binEdges, _ = plt.hist(sim.ravel(), 256)
         plt.show()
+        return values, binEdges
 
 
 class FullyDeveloppedSpeckleSimulationWithCircularSource(FullyDeveloppedSpeckleSimulationWithSource):
@@ -57,8 +58,6 @@ class FullyDeveloppedSpeckleSimulationWithCircularSource(FullyDeveloppedSpeckleS
         XY = np.indices((self._simShape, self._simShape))
         XY -= self._simShape // 2
         mask = dcc.Channel.createCircularMask(XY, self.__radius)
-        plt.imshow(mask)
-        plt.show()
         simulationBefforeFFT = mask * self.generatePhases(-np.pi, np.pi)
         simulation = np.abs(np.fft.fftshift(np.fft.fft2(simulationBefforeFFT))) ** 2
         self._simulation = simulation.real
@@ -78,9 +77,6 @@ class FullyDeveloppedSpeckleSimulationWithGaussianSource(FullyDeveloppedSpeckleS
         XY = np.indices((self._simShape, self._simShape))
         XY -= self._simShape // 2
         mask = dcc.Channel.createGaussianMask(XY, self.__sigma)
-        # mask[mask < 1 / np.e] = 0
-        # plt.imshow(mask)
-        # plt.show()
         simulationBefforeFFT = mask * self.generatePhases(-np.pi, np.pi)
         simulation = np.abs(np.fft.fftshift(np.fft.fft2(simulationBefforeFFT))) ** 2
         self._simulation = simulation.real
@@ -159,8 +155,9 @@ class SumOfFullyDeveloppedSpecklesSimulationWithSource:
             data = self.sumOfAllSimulations()
         else:
             data = self.meanOfAllSimulations()
-        plt.hist(data.ravel(), 256)
+        values, binEdges, _ = plt.hist(data.ravel(), 256)
         plt.show()
+        return values, binEdges
 
     def showSimulation(self, sumOnly: bool = False):
         if sumOnly:
@@ -181,27 +178,7 @@ class SumOfFullyDeveloppedSpecklesSimulationWithSource:
 if __name__ == '__main__':
     shape = 1000
 
-    c = FullyDeveloppedSpeckleSimulationWithCircularSource(shape, shape // 4)
-    c.runSimulation()
-
-    exit()
-    nb = 100
-    for min in [4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 32]:
-        # c = FullyDeveloppedSpeckleSimulationWithCircularSource(shape, shape // min)
-        # c.runSimulation()
-        # c.showSimulation()
-        # c.intensityHistogram()
-        # c.saveSimulation(f"circularWithPhasesSimulations\\{min}pixelsCircularWithPhasesSimulations.tiff")
-
-        # g = FullyDeveloppedSpeckleSimulationWithGaussianSource(shape, shape // min)
-        # g.runSimulation()
-        # g.showSimulation()
-        # g.intensityHistogram()
-        # g.saveSimulation(f"gaussianWithPhasesSimulations\\{min}sigmaGaussianWithPhasesSimulations.tiff")
-
-
-        notFully = SumOfFullyDeveloppedSpecklesSimulationWithSource(shape, nb)
-        notFully.runSimulationsWithCircularSources(shape // min)
-        # notFully.showSimulation()
-        # notFully.intensityHistogram(False)
-        notFully.saveSimulation(f"sumOfCircularWithPhases\\{nb}sims\\{min}pixels_{nb}simulationsOfCircles.tiff")
+    c = SumOfFullyDeveloppedSpecklesSimulationWithSource(shape, 2)
+    c.runSimulationsWithCircularSources(shape // 6)
+    values, _ = c.intensityHistogram()
+    
