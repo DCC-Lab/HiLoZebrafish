@@ -114,32 +114,11 @@ class GaussianGenerator(RandomPositionGenerator):
 
 
 if __name__ == '__main__':
-    # minSize = 4
-    # amp = 100
-    # c = SpeckleSimulationWithCircularSource(1000, 1000 // minSize, amp)
-    # c.spectralManipulations()
-    # c.showImage()
-
-
-    # sigmas = [4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 32]
-    # for sigma in sigmas:
-    #     g = SpeckleSimulationWithGaussianSource(1000, sigma)
-    #     g.spectralManipulations()
-    #     #g.saveImage(f"gaussianWithPhasesSimulations\\{sigma}sigmaGaussianWithPhasesSimulations.tiff")
-
-    # sigma = 4
-    # amp = 100
-    # g = SpeckleSimulationWithGaussianSource(1000, 1000 / sigma, amp)
-    # g.spectralManipulations()
-    # g.showImage()
-
-    exit()
-
     x = 1000
     y = 1000
-    sigma = 20
-    separation = 10
-    nbGaussians = 1100
+    sigma = 4
+    separation = 1
+    nbGaussians = 10000
     g = GaussianGenerator((y, x), sigma, minimumSpacing=separation)
     g.generateGaussians(int(nbGaussians))
     img = g.image
@@ -147,3 +126,4 @@ if __name__ == '__main__':
     ok = input("Save image?\n")
     if ok.lower() == "y":
         g.saveImage(f"gaussianSimulations\\{nbGaussians}gaussians_{x}x{y}_{sigma}sigma_{separation}separation.tiff")
+    cv2.imwrite("10000.png", img)
