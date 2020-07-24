@@ -3,20 +3,25 @@ import matplotlib.pyplot as plt
 import tifffile
 import os
 from scipy.ndimage import gaussian_filter
-from scipy.optimize import curve_fit
+import cv2
 
-nb = 20
+nb = 13
 fname = rf"20190924-200ms_20mW_Ave15_Gray_10X0.4_{nb}.tif"
 
 p = os.path.dirname(os.path.join(os.getcwd(), "..", ".."))
 path = os.path.join(p, "MATLAB", fname)
 
-path = "simulation_2000x2000_1600circles_1separation_30radius.png"
+prefix = "circularWithPhasesSimulations"
+otherPrefix = "50sims"
+path = "4pixelsCircularWithPhasesSimulations.tiff"
+args = [prefix, path]
+#args = [prefix, otherPrefix, path]
+path = os.path.join(*args)
 
-if path.endswith("tif"):
+if path.endswith("tif") or path.endswith("tiff"):
     img = tifffile.imread(path)
 else:
-    img = plt.imread(path)
+    img = cv2.imread(path)
 
 plt.imshow(img)
 plt.show()
@@ -101,29 +106,3 @@ print(f"right: {right}")
 FWHM = right - left
 print("Diameter : ", FWHM)
 print("Radius : ", FWHM / 2)
-
-shape = len(verticalSlice)
-
-x = np.arange(shape)
-y = verticalSlice
-n = len(x)  # the number of data
-mean = sum(x * y) / sum(y)
-sigma = np.sqrt(sum(y * (x - mean) ** 2) / sum(y))
-
-
-def Gauss(x, a, b, c, d):
-    return a + (b - a) * np.exp(-(x - c) ** 2 / (2 * d ** 2))
-
-
-# Following lines: Gaussian fit on the distribution/profile
-popt, pcov = curve_fit(Gauss, x, y, p0=[max(y), 1, mean, 1])
-
-plt.plot(x, y, 'b+:', label='data')
-plt.plot(x, Gauss(x, *popt), 'r-', label='fit')
-plt.legend()
-plt.show()
-sigma = abs(popt[-1])
-FWHM = sigma * 2 * (2 * np.log(2)) ** .5
-print(sigma)
-print(pcov)
-print(FWHM)
