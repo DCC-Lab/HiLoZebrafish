@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import tifffile
-import os
 from scipy.ndimage import gaussian_filter
 import cv2
 
@@ -25,6 +24,7 @@ class Autocorrelation:
         self.__image = FileReader.readFile(imagePath)
         self.__original = self.image
         self.__autocorrelation = None
+        self.__slicesObj = None
 
     @property
     def image(self):
@@ -35,6 +35,22 @@ class Autocorrelation:
         if self.__autocorrelation is None:
             return None
         return self.__autocorrelation.copy()
+
+    def getSlices(self, indices: tuple = None):
+        if indices is None:
+            return self.__slicesObj.middleSlices()
+        return self.__slicesObj.slicesAt(indices)
+
+    def _gaussianNormalization(self, filterStdDev: float = 75):
+        filteredImage = gaussian_filter(self.__image, filterStdDev)
+        self.__image = self.__image / filteredImage - np.mean(self.__image)
+
+    def _autocorrelationWithFourierTransform(self):
+        fft = np.fft.fft2(self.__image)
+        ifft = np.fft.ifftshift(np.fft.ifft2(np.abs(fft) ** 2)).real
+        ifft /= np.size(ifft)
+        self.__autocorrelation = (ifft - np.mean(ifft) ** 2) / np.var(ifft)
+        self.__slicesObj = AutocorrelationSlices(self.__autocorrelation)
 
     def showImage(self):
         plt.imshow(self.__image)
@@ -49,17 +65,17 @@ class Autocorrelation:
         plt.show()
 
     def showAutocorrelationSlices(self, indices: tuple = None, showHorizontal: bool = True, showVertical: bool = True):
-        vSlice, hSlice = self._getSlices(indices)
+        vSlice, hSlice = self.getSlices(indices)
         if showHorizontal and showVertical:
             fig, (ax1, ax2) = plt.subplots(2, sharey="col")
             fig.suptitle("Autocorrelation slices")
 
             ax1.plot(hSlice)
-            ax1.set_title(f"Horizontal slice of the autocorrelation (at index {indices[0]})")
+            ax1.set_title(f"Horizontal slice (at index {indices[0]})")
             ax1.set_xlabel("Horizontal position $x$ [pixel]")
 
             ax2.plot(vSlice)
-            ax1.set_title(f"Vertical slice of the autocorrelation (at index {indices[1]})")
+            ax1.set_title(f"Vertical slice (at index {indices[1]})")
             ax1.set_xlabel("Vertical position $y$ [pixel]")
 
             ylabel = "Normalized autocorrelation coefficient [-]"
@@ -67,29 +83,38 @@ class Autocorrelation:
             plt.subplots_adjust(hspace=0.32)
             plt.show()
         elif showVertical:
-            pass
+            plt.plot(vSlice)
+            plt.title(f"Vertical slice (at index {indices[1]})")
+            plt.xlabel("Vertical position $y$ [pixel]")
+            plt.ylabel("Normalized autocorrelation coefficient [-]")
+            plt.show()
         elif showHorizontal:
-            pass
+            plt.plot(hSlice)
+            plt.title(f"Horizontal slice (at index {indices[0]})")
+            plt.xlabel("Horizontal position $x$ [pixel]")
+            plt.ylabel("Normalized autocorrelation coefficient [-]")
+            plt.show()
 
 
-    def _gaussianNormalization(self, filterStdDev: float = 75):
-        filteredImage = gaussian_filter(self.__image, filterStdDev)
-        self.__image = self.__image / filteredImage - np.mean(self.__image)
+class AutocorrelationSlices:
 
-    def _autocorrelationWithFourierTransform(self):
-        fft = np.fft.fft2(self.__image)
-        ifft = np.fft.ifftshift(np.fft.ifft2(np.abs(fft) ** 2)).real
-        ifft /= np.size(ifft)
-        self.__autocorrelation = (ifft - np.mean(ifft) ** 2) / np.var(ifft)
+    def __init__(self, autocorrelation: np.ndarray):
+        if not isinstance(autocorrelation, np.ndarray):
+            raise TypeError("The autocorrelation parameter must be a numpy array.")
+        if not autocorrelation.ndim == 2:
+            raise ValueError("The autocorrelation must be in 2D.")
+        self.__autocorrelation = autocorrelation
 
-    def _getSlices(self, indices: tuple = None):
-        # We suppose shape[0] is the width and shape[1] is the height
-        if indices is None:
-            xSlice, ySlice = self.__autocorrelation.shape[0] // 2, self.__autocorrelation.shape[1] // 2
-        elif len(indices) != 2:
-            raise ValueError("There must be 2 indices when specified.")
-        else:
-            xSlice, ySlice = indices[0], indices[1]
+    def slicesAt(self, indices: tuple):
+        if len(indices) != 2:
+            raise ValueError("There must be 2 indices of slicing, one horizontal and one vertical.")
+        # Assumes indices[0] is the width and indices[1] is the height
+        xSlice, ySlice = indices[0], indices[1]
         verticalSlice = self.__autocorrelation[:, ySlice]
         horizontalSlice = self.__autocorrelation[xSlice, :]
         return verticalSlice, horizontalSlice
+
+    def middleSlices(self):
+        # Assumes the shape of the autocorrelation is (width, height) or (nb columns, nb lines)
+        middleX, middleY = self.__autocorrelation.shape[0] // 2, self.__autocorrelation.shape[1] // 2
+        return self.slicesAt((middleX, middleY))
