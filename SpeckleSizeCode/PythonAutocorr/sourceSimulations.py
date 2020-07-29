@@ -3,6 +3,7 @@ import dcclab as dcc
 import tifffile as tfile
 import matplotlib.pyplot as plt
 import time
+from cv2 import cv2
 
 
 class FullyDeveloppedSpeckleSimulationWithSource:
@@ -43,7 +44,35 @@ class FullyDeveloppedSpeckleSimulationWithSource:
             raise ValueError("No simulation to extract intensity histogram.")
         values, binEdges, _ = plt.hist(sim.ravel(), 256)
         plt.show()
-        return values, binEdges
+        return values, 
+
+    def applyShotNoise(self):
+        self._simulation = np.random.poisson(self._simulation)
+        
+
+    def addShotNoise(self,scaling=2,resize=False):
+        self._simulation = self._simulation * 255
+        self._simulation = self._simulation.astype(np.uint8)
+        simbase = self._simulation
+        if resize == True:
+            cv2.resize(self._simulation,(256,256))
+        x,y = self._simulation.shape
+        if scaling >= -2:
+            self._simulation = self._simulation * (1 + ((scaling - 2) * 0.25))
+            arraybefore = self._simulation.astype(np.int8)
+            self.applyShotNoise()
+            arrayafter = self._simulation.astype(np.int8)
+            diff = arrayafter - arraybefore
+            for xval in range(x):
+                for yval in range(y):
+                    if simbase[xval,yval] + diff[xval,yval] < 0:
+                        self._simulation[xval,yval] = 0
+                    elif simbase[xval,yval] + diff[xval,yval] > 255:
+                        self._simulation[xval,yval] = 255
+                    else:
+                        self._simulation[xval,yval] = simbase[xval,yval] + diff[xval,yval]
+        else:
+            raise ValueError("scaling value out of range: the scaling values have to be higher than -2")
 
 
 class FullyDeveloppedSpeckleSimulationWithCircularSource(FullyDeveloppedSpeckleSimulationWithSource):
@@ -177,8 +206,14 @@ class SumOfFullyDeveloppedSpecklesSimulationWithSource:
 
 if __name__ == '__main__':
     shape = 1000
-
+    """
     c = SumOfFullyDeveloppedSpecklesSimulationWithSource(shape, 2)
     c.runSimulationsWithCircularSources(shape // 6)
     values, _ = c.intensityHistogram()
+    """
+    k = FullyDeveloppedSpeckleSimulationWithCircularSource(shape,100)
+    k.runSimulation()
+    k.showSimulation()
+    k.addShotNoise(scaling=3,resize=True)
+    k.showSimulation()
     
