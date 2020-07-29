@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import tifffile
-from scipy.ndimage import gaussian_filter
+from scipy.ndimage import gaussian_filter, median_filter
 import cv2
 
 
@@ -37,9 +37,20 @@ class Autocorrelation:
         return self.__autocorrelation.copy()
 
     def getSlices(self, indices: tuple = None):
+        if self.__slicesObj is None:
+            raise ValueError("Please compute the autocorrelation to access its slices.")
         if indices is None:
             return self.__slicesObj.middleSlices()
         return self.__slicesObj.slicesAt(indices)
+
+    def computeAutocorrelation(self, gaussianFilterStdDev: float = 75, medianFilterSize: int = 3,
+                               method: str = "fourier"):
+        # TODO: Maybe add autocorrelation with scipy / numpy? If not, remove method keyword
+        supportedMethods = {"fourier": self._autocorrelationWithFourierTransform}
+        self._gaussianNormalization(gaussianFilterStdDev)  # First, gaussian filter normalization
+        self._medianFilter(medianFilterSize)  # Then, median filter to remove noise
+        method = supportedMethods[method]
+        method()  # Compute the autocorrelation
 
     def _gaussianNormalization(self, filterStdDev: float = 75):
         filteredImage = gaussian_filter(self.__image, filterStdDev)
@@ -49,8 +60,11 @@ class Autocorrelation:
         fft = np.fft.fft2(self.__image)
         ifft = np.fft.ifftshift(np.fft.ifft2(np.abs(fft) ** 2)).real
         ifft /= np.size(ifft)
-        self.__autocorrelation = (ifft - np.mean(ifft) ** 2) / np.var(ifft)
+        self.__autocorrelation = (ifft - np.mean(self.__image) ** 2) / np.var(self.__image)
         self.__slicesObj = AutocorrelationSlices(self.__autocorrelation)
+
+    def _medianFilter(self, filterSize: int = 3):
+        self.__image = median_filter(self.__image, filterSize)
 
     def showImage(self):
         plt.imshow(self.__image)
