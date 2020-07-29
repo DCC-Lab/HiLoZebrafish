@@ -54,8 +54,8 @@ class FullyDeveloppedSpeckleSimulationWithSource:
         self._simulation = self._simulation * 255
         self._simulation = self._simulation.astype(np.uint8)
         simbase = self._simulation
-        if resize == True:
-            cv2.resize(self._simulation,(256,256))
+        if resize != False:
+            self._simulation = cv2.resize(self._simulation,resize)
         x,y = self._simulation.shape
         if scaling >= -2:
             self._simulation = self._simulation * (1 + ((scaling - 2) * 0.25))
@@ -214,6 +214,6 @@ if __name__ == '__main__':
     k = FullyDeveloppedSpeckleSimulationWithCircularSource(shape,100)
     k.runSimulation()
     k.showSimulation()
-    k.addShotNoise(scaling=3,resize=True)
+    k.addShotNoise(scaling=3,resize=(700,700))
     k.showSimulation()
     
