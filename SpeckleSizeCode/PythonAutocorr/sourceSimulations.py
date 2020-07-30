@@ -59,18 +59,13 @@ class FullyDeveloppedSpeckleSimulationWithSource:
         x,y = self._simulation.shape
         if scaling >= -2:
             self._simulation = self._simulation * (1 + ((scaling - 2) * 0.25))
-            arraybefore = self._simulation.astype(np.int8)
+            arraybefore = self._simulation.astype(np.int16)
             self.applyShotNoise()
-            arrayafter = self._simulation.astype(np.int8)
+            arrayafter = self._simulation.astype(np.int16)
             diff = arrayafter - arraybefore
-            for xval in range(x):
-                for yval in range(y):
-                    if simbase[xval,yval] + diff[xval,yval] < 0:
-                        self._simulation[xval,yval] = 0
-                    elif simbase[xval,yval] + diff[xval,yval] > 255:
-                        self._simulation[xval,yval] = 255
-                    else:
-                        self._simulation[xval,yval] = simbase[xval,yval] + diff[xval,yval]
+            transfo = simbase.astype(np.int16)
+            final = np.clip(transfo + diff,0,255)
+            self._simulation = final.astype(np.uint8)
         else:
             raise ValueError("scaling value out of range: the scaling values have to be higher than -2")
 
@@ -214,6 +209,6 @@ if __name__ == '__main__':
     k = FullyDeveloppedSpeckleSimulationWithCircularSource(shape,100)
     k.runSimulation()
     k.showSimulation()
-    k.addShotNoise(scaling=3,resize=(700,700))
+    k.addShotNoise(scaling=3)
     k.showSimulation()
     
