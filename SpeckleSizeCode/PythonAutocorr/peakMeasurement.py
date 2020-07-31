@@ -21,32 +21,7 @@ class HalfWidthAtHalfMaximumOneDimension:
             raise ValueError("The data must be in one dimension.")
         self.__data = data
         self.__sideOfPeak = "left" if positiveSlopeSideOfPeak else "right"
-
-    def findHWHMWithAverageOfKNeighbors(self, k: int = 2, moreInUpperNeighbors: bool = True):
-        if k > 2:
-            raise ValueError("There should be at least 2 neighbors")
-        halfMax = self.maximum / 2
-        halfK = k / 2
-        upperKs = math.ceil(halfK)
-        lowerKs = math.floor(halfK)
-        if not moreInUpperNeighbors:
-            temp = upperKs
-            upperKs = lowerKs
-            lowerKs = temp
-        upperPoints = np.where(self.__data >= halfMax)[0]
-        lowerPoints = np.where(self.__data <= halfMax)[0]
-        if self.__sideOfPeak == "left":
-            upperPointsForHWHM = upperPoints[:upperKs]
-            lowerPointsForHWHM = lowerPoints[-lowerKs:]
-            left = np.mean(np.append(upperPointsForHWHM, lowerPointsForHWHM))
-            right = len(self.__data)
-        else:
-            upperPointsForHWHM = upperPoints[-upperPoints:]
-            lowerPointsForHWHM = lowerPoints[:lowerPoints]
-            left = 0
-            right = np.mean(np.append(upperPointsForHWHM, lowerPointsForHWHM))
-        HWHM = right - left
-        return HWHM
+        self.report = None
 
     def findHWHMWithinError(self, error=0.05):
         halfMax = self.maximum / 2
@@ -57,36 +32,64 @@ class HalfWidthAtHalfMaximumOneDimension:
         nbPoints = len(pointsForHWHM)
         if nbPoints == 0:
             raise ValueError("The error is too small. Not enough values were found to compute the HWHM.")
+        mean = np.mean(pointsForHWHM)
+        left = 0
+        right = mean
         if self.__sideOfPeak == "left":
-            left = np.mean(pointsForHWHM)
+            left = mean
             right = len(self.__data)
-        else:
-            left = 0
-            right = np.mean(pointsForHWHM)
         HWHM = right - left
+        self.report = self._errorStatsReport(pointsForHWHM)
         return HWHM
 
-    def findHWHMWithLinearFit(self):
+    def findHWHMWithLinearFit(self, maxNbPoints: int = 3, moreInUpperPart: bool = True):
+        if maxNbPoints < 2:
+            raise ValueError("There should be at least 2 points for the linear fit.")
         halfMax = self.maximum / 2
+        halfK = maxNbPoints / 2
+        upperKs = math.ceil(halfK)
+        lowerKs = math.floor(halfK)
+        if not moreInUpperPart:
+            temp = upperKs
+            upperKs = lowerKs
+            lowerKs = temp
         lows, highs, lIndices, hIndices = splitInTwoWithMiddleValue(halfMax, self.__data, True)
+        lows = lows[:lowerKs]
+        highs = highs[-upperKs:]
+        lIndices = lIndices[:lowerKs]
+        hIndices = hIndices[-upperKs:]
         if self.__sideOfPeak == "left":
-            low = lows[-1]
-            high = highs[0]
-            lIndice = lIndices[-1]
-            hIndice = hIndices[0]
-            slope, zero = linearEquation(low, high, lIndice, hIndice)
-            left = findXWithY(halfMax, slope, zero)
-            right = len(self.__data)
-        else:
-            low = lows[0]
-            high = highs[-1]
-            lIndice = lIndices[0]
-            hIndice = hIndices[-1]
-            slope, zero = linearEquation(low, high, lIndice, hIndice)
+            lows = lows[-lowerKs:]
+            highs = highs[:upperKs]
+            lIndices = lIndices[-lowerKs:]
+            hIndices = hIndices[:upperKs]
+        xData = np.append(lIndices, hIndices)
+        yData = np.append(lows, highs)
+        (slope, zero), covMat = np.polyfit(xData, yData, 1, full=False,
+                                           cov=True)
+        left = findXWithY(halfMax, slope, zero)
+        right = len(self.__data)
+        if self.__sideOfPeak == "right":
             right = findXWithY(halfMax, slope, zero)
             left = 0
         HWHM = right - left
+        self.report = self._linearFitStatsReport(xData, slope, zero, covMat)
         return HWHM
+
+    def _errorStatsReport(self, dataUsed: np.ndarray):
+        nbPoints = len(dataUsed)
+        mean = np.mean(dataUsed)
+        stdDev = np.std(dataUsed)
+        report = f"HWHM error method: {mean} average, {stdDev} standard deviation, {nbPoints} points used."
+        return report
+
+    def _linearFitStatsReport(self, dataUsed: np.ndarray, slope: float, zero: float, covMat: np.ndarray):
+        nbPoints = len(dataUsed)
+        slopeError, zeroError = np.diag(covMat) ** 0.5
+        report = f"HWHM linear fit method: {nbPoints} points used, "
+        report += f"({slope} ± {slopeError}) slope, ({zero} ± {zeroError}) error\n"
+        report += "*uncertainty is taken as the square root of the fit's covariance matrix diagonal*"
+        return report
 
 
 class FullWidthAtHalfMaximumOneDimension(HalfWidthAtHalfMaximumOneDimension):
@@ -94,16 +97,12 @@ class FullWidthAtHalfMaximumOneDimension(HalfWidthAtHalfMaximumOneDimension):
     def __init__(self, data: np.ndarray, maximum: float = None):
         super(FullWidthAtHalfMaximumOneDimension, self).__init__(data, maximum)
 
-    def findFWHMWithAverageOfKNeighbors(self, k: int = 2, moreInUpperNeighbors: bool = True):
-        HWHM = self.findHWHMWithAverageOfKNeighbors(k, moreInUpperNeighbors)
-        return 2 * HWHM
-
     def findFWHMWithinError(self, error: float = 0.05):
         HWHM = self.findHWHMWithinError(error)
         return 2 * HWHM
 
-    def findFWHMWithLinearFit(self):
-        HWHM = self.findHWHMWithLinearFit()
+    def findFWHMWithLinearFit(self, maxNbPoints: int = 3, moreInUpperPart: bool = True):
+        HWHM = self.findHWHMWithLinearFit(maxNbPoints, moreInUpperPart)
         return 2 * HWHM
 
 
