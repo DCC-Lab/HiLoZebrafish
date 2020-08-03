@@ -25,7 +25,6 @@ class HalfWidthAtHalfMaximumOneDimension:
 
     def findHWHMWithinError(self, error=0.05):
         halfMax = self.maximum / 2
-        print(np.max(self.__data) / 2)
         inferiorBound = halfMax - halfMax * error
         superiorBound = halfMax + halfMax * error
         pointsForHWHM = np.where((self.__data >= inferiorBound) & (self.__data <= superiorBound))[0]
