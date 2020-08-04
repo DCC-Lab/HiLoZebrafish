@@ -68,6 +68,17 @@ class FullyDeveloppedSpeckleSimulationWithSource:
             self._simulation = final.astype(np.uint8)
         else:
             raise ValueError("scaling value out of range: the scaling values have to be higher than -2")
+    
+    def supergaussian(self,center,pos,a=1,n=4,sigmax=250,sigmay=250):
+       return a * np.exp((-2 * ((pos[0] - center[0]) / sigmax)**n) + (-2 * ((pos[1] - center[1]) / sigmay)**n))
+
+    def nonUniformIntensity(self):
+        i,j = self._simulation.shape
+        center = (i // 2, j // 2)
+        for xval in range(i):
+            for yval in range(j):
+                self._simulation[xval,yval] = self._simulation[xval,yval] * self.supergaussian(center,(xval,yval))
+
 
 
 class FullyDeveloppedSpeckleSimulationWithCircularSource(FullyDeveloppedSpeckleSimulationWithSource):
@@ -209,6 +220,10 @@ if __name__ == '__main__':
     k = FullyDeveloppedSpeckleSimulationWithCircularSource(shape,100)
     k.runSimulation()
     k.showSimulation()
+    """
     k.addShotNoise(scaling=3)
+    """
+    k.nonUniformIntensity()
     k.showSimulation()
+
     
