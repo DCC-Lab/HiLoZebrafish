@@ -121,3 +121,9 @@ class SpeckleCaracerization:
         else:
             raise TypeError(f"The type '{dtype}' is not supported for a speckle image.")
         return maxPossible
+
+
+if __name__ == '__main__':
+    path = r"..\PythonAutocorr\circularWithPhasesSimulations\4pixelsCircularWithPhasesSimulations.tiff"
+    s = SpeckleCaracerization(path)
+    print(s.computeFWHMBothAxes(False))

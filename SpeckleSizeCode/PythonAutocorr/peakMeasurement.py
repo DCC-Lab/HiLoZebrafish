@@ -128,7 +128,7 @@ class FullWidthAtHalfMaximumNeighborsAveraging(HalfWidthAtHalfMaximumNeighborsAv
 
 class FullWidthAtHalfMaximumLinearFit(HalfWidthAtHalfMaximumLinearFit):
     def __init__(self, data: np.ndarray, maximum: float = None, maximumNumberOfPoints: int = 10,
-                 moreInUpperPart: boo = True):
+                 moreInUpperPart: bool = True):
         self.FWHM = None
         super(FullWidthAtHalfMaximumLinearFit, self).__init__(data, maximum, None, maximumNumberOfPoints,
                                                               moreInUpperPart)
