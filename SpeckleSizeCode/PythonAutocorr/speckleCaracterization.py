@@ -2,6 +2,7 @@ from SpeckleSizeCode.PythonAutocorr import autocorrelation, peakMeasurement
 import matplotlib.pyplot as plt
 from scipy.signal import convolve2d
 import numpy as np
+import os
 
 
 class SpeckleCaracerization:
@@ -124,6 +125,7 @@ class SpeckleCaracerization:
 
 
 if __name__ == '__main__':
-    path = r"..\PythonAutocorr\circularWithPhasesSimulations\4pixelsCircularWithPhasesSimulations.tiff"
+    path = os.path.dirname(__file__)
+    path = os.path.join(path, "circularWithPhasesSimulations", "4pixelsCircularWithPhasesSimulations.tiff")
     s = SpeckleCaracerization(path)
     print(s.computeFWHMBothAxes(False))
