@@ -222,11 +222,13 @@ if __name__ == '__main__':
     k = FullyDeveloppedSpeckleSimulationWithCircularSource(shape,100)
     k.runSimulation()
     k.showSimulation()
+    k.saveSimulation(r"C:\Users\ludod\Desktop\Stage_CERVO\speckle_imagery\simsave_for_speckle_diameter\test1.tiff")
     """
     k.addShotNoise(scaling=3)
     """
     k.addShotNoise()
     k.nonUniformIntensity(sigmax=500,sigmay=500)
     k.showSimulation()
+    k.saveSimulation(r"C:\Users\ludod\Desktop\Stage_CERVO\speckle_imagery\simsave_for_speckle_diameter\test2.tiff")
 
     

@@ -146,16 +146,19 @@ class SpeckleCaracerization:
 
 if __name__ == '__main__':
     # path = r"..\PythonAutocorr\sumOfCircularWithPhases\100sims\32pixels_100simulationsOfCircles.tiff"
-    path = r"..\PythonAutocorr\gaussianWithPhasesSimulations\32sigmaGaussianWithPhasesSimulations_cut1overE.tiff"
+    #path = r"..\PythonAutocorr\gaussianWithPhasesSimulations\32sigmaGaussianWithPhasesSimulations_cut1overE.tiff"
     # sc = SpeckleCaracerization(path)
     # sc.showFullAutocorrelation()
     # sc.fullReport(20 / 100)
     # # print(np.round(sc.computeFWHMBothAxes(False, "error", error=20 / 100)[0] / 2, 2))
     # # print(np.round(sc.computeFWHMBothAxes(False, "linear", maxNbPoints=10)[0] / 2, 2))
+    path = r"C:\Users\ludod\Desktop\Stage_CERVO\speckle_imagery\simsave_for_speckle_diameter\test1.tiff"
+    k = SpeckleCaracerization(path)
+    print(k.computeFWHMBothAxes)
     from scipy.ndimage import correlate
     import tifffile as tf
 
     image = tf.imread(path)
-    corr = correlate(image[:200, :200], image[:200, :200], )
-    plt.imshow(corr)
-    plt.show()
+    #corr = correlate(image[:200, :200], image[:200, :200], )
+    #plt.imshow(corr)
+    #plt.show()
