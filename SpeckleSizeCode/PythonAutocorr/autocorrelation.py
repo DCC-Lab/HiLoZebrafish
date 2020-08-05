@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import tifffile
 from scipy.ndimage import gaussian_filter, median_filter
+from scipy.signal import correlate2d
 import cv2
 
 
@@ -43,14 +44,10 @@ class Autocorrelation:
             return self.__slicesObj.middleSlices()
         return self.__slicesObj.slicesAt(indices)
 
-    def computeAutocorrelation(self, gaussianFilterStdDev: float = 75, medianFilterSize: int = 3,
-                               method: str = "fourier"):
-        # TODO: Maybe add autocorrelation with scipy / numpy? If not, remove method keyword
-        supportedMethods = {"fourier": self._autocorrelationWithFourierTransform}
+    def computeAutocorrelation(self, gaussianFilterStdDev: float = 75, medianFilterSize: int = 3):
         self._gaussianNormalization(gaussianFilterStdDev)  # First, gaussian filter normalization
         self._medianFilter(medianFilterSize)  # Then, median filter to remove noise
-        method = supportedMethods[method]
-        method()  # Compute the autocorrelation
+        self._autocorrelationWithFourierTransform()  # Compute the autocorrelation
 
     def _gaussianNormalization(self, filterStdDev: float = 75):
         filteredImage = gaussian_filter(self.__image, filterStdDev)
@@ -62,6 +59,7 @@ class Autocorrelation:
         ifft /= np.size(ifft)
         self.__autocorrelation = (ifft - np.mean(self.__image) ** 2) / np.var(self.__image)
         self.__slicesObj = AutocorrelationSlices(self.__autocorrelation)
+
 
     def _medianFilter(self, filterSize: int = 3):
         self.__image = median_filter(self.__image, filterSize)

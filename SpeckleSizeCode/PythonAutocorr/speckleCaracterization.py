@@ -13,54 +13,42 @@ class SpeckleCaracerization:
         self.__autocorrelation = self.__autocorrObj.autocorrelation
         self.__verticalSlice, self.__horizontalSlice = self.__autocorrObj.getSlices()
         self.__histInfo = (None, None, None)
+        self.peakMeasureReport = {}
 
-    def computeFWHMOfSpecificAxisWithLinearFit(self, axis: str):
+    def computeFWHMOfSpecificAxisWithLinearFit(self, axis: str, maxNbPoints: int = 3, moreInUpperPart: bool = True):
         cleanedAxis = axis.lower().strip()
         if cleanedAxis == "horizontal":
             FWHM = peakMeasurement.FullWidthAtHalfMaximumOneDimension(self.__horizontalSlice, 1)
-            FWHM = FWHM.findFWHMWithLinearFit()
+            FWHM_value = FWHM.findFWHMWithLinearFit(maxNbPoints, moreInUpperPart)
         elif cleanedAxis == "vertical":
             FWHM = peakMeasurement.FullWidthAtHalfMaximumOneDimension(self.__verticalSlice, 1)
-            FWHM = FWHM.findFWHMWithLinearFit()
+            FWHM_value = FWHM.findFWHMWithLinearFit(maxNbPoints, moreInUpperPart)
         else:
             raise ValueError(f"Axis '{axis}' not supported. Try 'horizontal' or 'vertical'.")
-        return FWHM
+        self.peakMeasureReport[cleanedAxis] = FWHM.report
+        return FWHM_value
 
     def computeFWHMOfSpecificAxisWithError(self, axis: str, error: float = 0.05):
         cleanedAxis = axis.lower().strip()
         if cleanedAxis == "horizontal":
             FWHM = peakMeasurement.FullWidthAtHalfMaximumOneDimension(self.__horizontalSlice, 1)
-            FWHM = FWHM.findFWHMWithinError(error)
+            FWHM_value = FWHM.findFWHMWithinError(error)
         elif cleanedAxis == "vertical":
             FWHM = peakMeasurement.FullWidthAtHalfMaximumOneDimension(self.__verticalSlice, 1)
-            FWHM = FWHM.findFWHMWithinError(error)
+            FWHM_value = FWHM.findFWHMWithinError(error)
         else:
             raise ValueError(f"Axis '{axis}' not supported. Try 'horizontal' or 'vertical'.")
-        return FWHM
-
-    def computeFWHMOfSpecificAxisWithKNeighbors(self, axis: str, k: int = 2, moreInUpperNeighbors: bool = True):
-        cleanedAxis = axis.lower().strip()
-        if cleanedAxis == "horizontal":
-            FWHM = peakMeasurement.FullWidthAtHalfMaximumOneDimension(self.__horizontalSlice, 1)
-            FWHM = FWHM.findFWHMWithAverageOfKNeighbors(k, moreInUpperNeighbors)
-        elif cleanedAxis == "vertical":
-            FWHM = peakMeasurement.FullWidthAtHalfMaximumOneDimension(self.__verticalSlice, 1)
-            FWHM = FWHM.findFWHMWithAverageOfKNeighbors(k, moreInUpperNeighbors)
-        else:
-            raise ValueError(f"Axis '{axis}' not supported. Try 'horizontal' or 'vertical'.")
-        return FWHM
+        self.peakMeasureReport[cleanedAxis] = FWHM.report
+        return FWHM_value
 
     def computeFWHMBothAxes(self, alsoReturnMean: bool = True, method: str = "error", *args, **kwargs):
         cleanedMethod = method.lower().strip()
         if cleanedMethod == "linear":
-            vertical = self.computeFWHMOfSpecificAxisWithLinearFit("vertical")
-            horizontal = self.computeFWHMOfSpecificAxisWithLinearFit("horizontal")
+            vertical = self.computeFWHMOfSpecificAxisWithLinearFit("vertical", *args, **kwargs)
+            horizontal = self.computeFWHMOfSpecificAxisWithLinearFit("horizontal", *args, **kwargs)
         elif cleanedMethod == "error":
             vertical = self.computeFWHMOfSpecificAxisWithError("vertical", *args, **kwargs)
             horizontal = self.computeFWHMOfSpecificAxisWithError("horizontal", *args, **kwargs)
-        elif cleanedMethod == "neighbors":
-            vertical = self.computeFWHMOfSpecificAxisWithKNeighbors("vertical", *args, **kwargs)
-            horizontal = self.computeFWHMOfSpecificAxisWithKNeighbors("horizontal", *args, **kwargs)
         else:
             raise ValueError(f"Method '{method}' not supported. Try 'linear' or 'error'.")
         return (vertical, horizontal, (vertical + horizontal) / 2) if alsoReturnMean else (vertical, horizontal)
@@ -74,6 +62,15 @@ class SpeckleCaracerization:
             plt.show()
         self.__histInfo = (hist, bins, nbBins)
         return hist, bins
+
+    def showFullAutocorrelation(self, colorBar: bool = True):
+        plt.imshow(self.__autocorrelation)
+        if colorBar:
+            plt.colorbar()
+        plt.show()
+
+    def showAutocorrelationSlices(self):
+        self.__autocorrObj.showAutocorrelationSlices()
 
     def isFullyDevelopedSpecklePattern(self, nbBins: int = 256):
         if self.__histInfo[-1] != nbBins:
@@ -99,6 +96,7 @@ class SpeckleCaracerization:
         return np.min(self.__image)
 
     def fullReport(self, FWHMFindingError: float = 0.05):
+        # TODO: find a better way, more concise, separate methods?
         fileName = self.__fileName
         errorForFWHM = FWHMFindingError * 100
         nbBins = 256
@@ -115,10 +113,11 @@ class SpeckleCaracerization:
             f"Horizontal speckle diameter : {horizontalDiameter} (mean of local neighbors within ±" \
             f"{errorForFWHM}% of 0.5)\n" \
             f"Mean of both directions : {mean}"
+        FWHMInfoError = f"FWHM measurements info : {self.peakMeasureReport}"
         specklePatternInfo = f"Mean intensity : {meanIntensity}\nStandard deviation : {stdDevIntensity}" \
             f"\nMedian : {medianIntensity}\nMin intensity : {minIntensity}, max intensity : {maxIntensity}"
         midReport = "----- Intensity histogram & pattern statistical info -----"
-        toShow = [header, generalFileInfo, speckleSizeInfo, specklePatternInfo, midReport,
+        toShow = [header, generalFileInfo, speckleSizeInfo, FWHMInfoError, midReport, specklePatternInfo,
                   "Displaying intensity histogram..."]
         print(*toShow, sep="\n")
         hist, bins = self.intensityHistogram(nbBins)
@@ -146,8 +145,17 @@ class SpeckleCaracerization:
 
 
 if __name__ == '__main__':
-    path = r"..\PythonAutocorr\sumOfCircularWithPhases\100sims\32pixels_100simulationsOfCircles.tiff"
-    path = r"..\PythonAutocorr\gaussianWithPhasesSimulations\6sigmaGaussianWithPhasesSimulations_cut1overE.tiff"
-    sc = SpeckleCaracerization(path)
-    print(np.round(sc.computeFWHMBothAxes(False, "error", error=20 / 100)[0] / 2, 2))
-    print(np.round(sc.computeFWHMBothAxes(False, "linear")[0] / 2, 2))
+    # path = r"..\PythonAutocorr\sumOfCircularWithPhases\100sims\32pixels_100simulationsOfCircles.tiff"
+    path = r"..\PythonAutocorr\gaussianWithPhasesSimulations\32sigmaGaussianWithPhasesSimulations_cut1overE.tiff"
+    # sc = SpeckleCaracerization(path)
+    # sc.showFullAutocorrelation()
+    # sc.fullReport(20 / 100)
+    # # print(np.round(sc.computeFWHMBothAxes(False, "error", error=20 / 100)[0] / 2, 2))
+    # # print(np.round(sc.computeFWHMBothAxes(False, "linear", maxNbPoints=10)[0] / 2, 2))
+    from scipy.ndimage import correlate
+    import tifffile as tf
+
+    image = tf.imread(path)
+    corr = correlate(image[:200, :200], image[:200, :200], )
+    plt.imshow(corr)
+    plt.show()
