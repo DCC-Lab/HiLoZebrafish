@@ -1,5 +1,6 @@
 from SpeckleSizeCode.PythonAutocorr import autocorrelation, peakMeasurement
 import matplotlib.pyplot as plt
+from scipy.signal import convolve2d
 import numpy as np
 
 
@@ -15,40 +16,48 @@ class SpeckleCaracerization:
         self.__histInfo = (None, None, None)
         self.peakMeasureReport = {}
 
+    @property
+    def fullAutocorrelation(self):
+        return self.__autocorrelation.copy()
+
+    @property
+    def autocorrelationSlices(self):
+        return self.__verticalSlice.copy(), self.__horizontalSlice.copy()
+
     def computeFWHMOfSpecificAxisWithLinearFit(self, axis: str, maxNbPoints: int = 3, moreInUpperPart: bool = True):
         cleanedAxis = axis.lower().strip()
         if cleanedAxis == "horizontal":
-            FWHM = peakMeasurement.FullWidthAtHalfMaximumOneDimension(self.__horizontalSlice, 1)
-            FWHM_value = FWHM.findFWHMWithLinearFit(maxNbPoints, moreInUpperPart)
+            FWHM = peakMeasurement.FullWidthAtHalfMaximumLinearFit(self.__horizontalSlice, 1, maxNbPoints,
+                                                                   moreInUpperPart)
+            FWHM_value = FWHM.findFWHM()
         elif cleanedAxis == "vertical":
-            FWHM = peakMeasurement.FullWidthAtHalfMaximumOneDimension(self.__verticalSlice, 1)
-            FWHM_value = FWHM.findFWHMWithLinearFit(maxNbPoints, moreInUpperPart)
+            FWHM = peakMeasurement.FullWidthAtHalfMaximumLinearFit(self.__verticalSlice, 1, maxNbPoints,
+                                                                   moreInUpperPart)
+            FWHM_value = FWHM.findFWHM()
         else:
             raise ValueError(f"Axis '{axis}' not supported. Try 'horizontal' or 'vertical'.")
-        self.peakMeasureReport[cleanedAxis] = FWHM.report
         return FWHM_value
 
-    def computeFWHMOfSpecificAxisWithError(self, axis: str, error: float = 0.05):
+    def computeFWHMOfSpecificAxisWithNeighborsAveraging(self, axis: str, averageRange: float = 0.2):
         cleanedAxis = axis.lower().strip()
         if cleanedAxis == "horizontal":
-            FWHM = peakMeasurement.FullWidthAtHalfMaximumOneDimension(self.__horizontalSlice, 1)
-            FWHM_value = FWHM.findFWHMWithinError(error)
+            FWHM = peakMeasurement.FullWidthAtHalfMaximumNeighborsAveraging(self.__horizontalSlice, 1, averageRange)
+            FWHM_value = FWHM.findFWHM()
         elif cleanedAxis == "vertical":
-            FWHM = peakMeasurement.FullWidthAtHalfMaximumOneDimension(self.__verticalSlice, 1)
-            FWHM_value = FWHM.findFWHMWithinError(error)
+            FWHM = peakMeasurement.FullWidthAtHalfMaximumNeighborsAveraging(self.__verticalSlice, 1, averageRange)
+            FWHM_value = FWHM.findFWHM()
         else:
             raise ValueError(f"Axis '{axis}' not supported. Try 'horizontal' or 'vertical'.")
-        self.peakMeasureReport[cleanedAxis] = FWHM.report
         return FWHM_value
 
-    def computeFWHMBothAxes(self, alsoReturnMean: bool = True, method: str = "error", *args, **kwargs):
+    def computeFWHMBothAxes(self, alsoReturnMean: bool = True, method: str = "mean", *args, **kwargs):
         cleanedMethod = method.lower().strip()
         if cleanedMethod == "linear":
             vertical = self.computeFWHMOfSpecificAxisWithLinearFit("vertical", *args, **kwargs)
             horizontal = self.computeFWHMOfSpecificAxisWithLinearFit("horizontal", *args, **kwargs)
-        elif cleanedMethod == "error":
-            vertical = self.computeFWHMOfSpecificAxisWithError("vertical", *args, **kwargs)
-            horizontal = self.computeFWHMOfSpecificAxisWithError("horizontal", *args, **kwargs)
+        elif cleanedMethod == "mean":
+            vertical = self.computeFWHMOfSpecificAxisWithNeighborsAveraging("vertical", *args, **kwargs)
+            horizontal = self.computeFWHMOfSpecificAxisWithNeighborsAveraging("horizontal", *args, **kwargs)
         else:
             raise ValueError(f"Method '{method}' not supported. Try 'linear' or 'error'.")
         return (vertical, horizontal, (vertical + horizontal) / 2) if alsoReturnMean else (vertical, horizontal)
@@ -62,15 +71,6 @@ class SpeckleCaracerization:
             plt.show()
         self.__histInfo = (hist, bins, nbBins)
         return hist, bins
-
-    def showFullAutocorrelation(self, colorBar: bool = True):
-        plt.imshow(self.__autocorrelation)
-        if colorBar:
-            plt.colorbar()
-        plt.show()
-
-    def showAutocorrelationSlices(self):
-        self.__autocorrObj.showAutocorrelationSlices()
 
     def isFullyDevelopedSpecklePattern(self, nbBins: int = 256):
         if self.__histInfo[-1] != nbBins:
@@ -95,43 +95,22 @@ class SpeckleCaracerization:
     def minIntensity(self):
         return np.min(self.__image)
 
-    def fullReport(self, FWHMFindingError: float = 0.05):
-        # TODO: find a better way, more concise, separate methods?
-        fileName = self.__fileName
-        errorForFWHM = FWHMFindingError * 100
-        nbBins = 256
-        verticalDiameter, horizontalDiameter, mean = self.computeFWHMBothAxes(method='error', error=FWHMFindingError)
-        meanIntensity = self.meanIntensity()
-        stdDevIntensity = self.stdDevIntensity()
-        medianIntensity = self.medianIntensity()
-        minIntensity = self.minIntensity()
-        maxIntensity = self.maxIntensity()
-        header = "===== Speckle caracterization report ====="
-        generalFileInfo = f"File path : {fileName}"
-        speckleSizeInfo = f"Vertical speckle diameter : {verticalDiameter} (mean of local neighbors within ±" \
-            f"{errorForFWHM}% of 0.5)\n" \
-            f"Horizontal speckle diameter : {horizontalDiameter} (mean of local neighbors within ±" \
-            f"{errorForFWHM}% of 0.5)\n" \
-            f"Mean of both directions : {mean}"
-        FWHMInfoError = f"FWHM measurements info : {self.peakMeasureReport}"
-        specklePatternInfo = f"Mean intensity : {meanIntensity}\nStandard deviation : {stdDevIntensity}" \
-            f"\nMedian : {medianIntensity}\nMin intensity : {minIntensity}, max intensity : {maxIntensity}"
-        midReport = "----- Intensity histogram & pattern statistical info -----"
-        toShow = [header, generalFileInfo, speckleSizeInfo, FWHMInfoError, midReport, specklePatternInfo,
-                  "Displaying intensity histogram..."]
-        print(*toShow, sep="\n")
-        hist, bins = self.intensityHistogram(nbBins)
-        maxPossible = self.__maxPossibleIntensityValue()
-        histInfo = f"Intensity histogram with {nbBins} bins, ranging from 0 to {maxPossible}"
-        isFullyDeveloped = self.isFullyDevelopedSpecklePattern(nbBins)
-        fullyDeveloped = f"The pattern is not fully developed "
-        fullyDeveloped += f"(based on {nbBins} bins, its maximum is not at 0, not assuming exponential distribution)"
-        if isFullyDeveloped:
-            fullyDeveloped = f"The pattern is fully developed"
-            fullyDeveloped += f" (based on {nbBins} bins, its maximum is at 0, assuming exponential distribution)"
+    def contrastModulation(self):
+        return (self.maxIntensity() - self.minIntensity()) / (self.maxIntensity() + self.minIntensity())
 
-        toShow = [histInfo, fullyDeveloped]
-        print(*toShow, sep="\n")
+    def globalContrast(self):
+        return self.stdDevIntensity() / self.meanIntensity()
+
+    def localContrast(self, kernelSize: int = 7):
+        if kernelSize < 2:
+            raise ValueError("The size of the local contrast kernel must be at least 2.")
+        kernel = np.ones((kernelSize, kernelSize))
+        n = kernel.size
+        windowedAverage = convolve2d(self.__image, kernel, "valid") / n
+        squaredImageFilter = convolve2d(self.__image ** 2, kernel, "valid")
+        # Compute de sample standard deviation
+        stdImageWindowed = ((squaredImageFilter - n * windowedAverage ** 2) / (n - 1)) ** 0.5
+        return stdImageWindowed / windowedAverage
 
     def __maxPossibleIntensityValue(self):
         dtype = self.__image.dtype
@@ -142,20 +121,3 @@ class SpeckleCaracerization:
         else:
             raise TypeError(f"The type '{dtype}' is not supported for a speckle image.")
         return maxPossible
-
-
-if __name__ == '__main__':
-    # path = r"..\PythonAutocorr\sumOfCircularWithPhases\100sims\32pixels_100simulationsOfCircles.tiff"
-    path = r"..\PythonAutocorr\gaussianWithPhasesSimulations\32sigmaGaussianWithPhasesSimulations_cut1overE.tiff"
-    # sc = SpeckleCaracerization(path)
-    # sc.showFullAutocorrelation()
-    # sc.fullReport(20 / 100)
-    # # print(np.round(sc.computeFWHMBothAxes(False, "error", error=20 / 100)[0] / 2, 2))
-    # # print(np.round(sc.computeFWHMBothAxes(False, "linear", maxNbPoints=10)[0] / 2, 2))
-    from scipy.ndimage import correlate
-    import tifffile as tf
-
-    image = tf.imread(path)
-    corr = correlate(image[:200, :200], image[:200, :200], )
-    plt.imshow(corr)
-    plt.show()
