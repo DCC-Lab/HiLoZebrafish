@@ -3,6 +3,7 @@ import dcclab as dcc
 import tifffile as tfile
 import matplotlib.pyplot as plt
 import time
+from cv2 import cv2
 
 
 class FullyDeveloppedSpeckleSimulationWithSource:
@@ -43,7 +44,43 @@ class FullyDeveloppedSpeckleSimulationWithSource:
             raise ValueError("No simulation to extract intensity histogram.")
         values, binEdges, _ = plt.hist(sim.ravel(), 256)
         plt.show()
-        return values, binEdges
+        return values, 
+
+    def applyShotNoise(self):
+        self._simulation = np.random.poisson(self._simulation)
+        
+
+    def addShotNoise(self,scaling=2,resize=False):
+        self._simulation = self._simulation * 255
+        self._simulation = self._simulation.astype(np.uint8)
+        simbase = self._simulation
+        if resize != False:
+            self._simulation = cv2.resize(self._simulation,resize)
+        x,y = self._simulation.shape
+        if scaling >= -2:
+            self._simulation = self._simulation * (1 + ((scaling - 2) * 0.25))
+            arraybefore = self._simulation.astype(np.int16)
+            self.applyShotNoise()
+            arrayafter = self._simulation.astype(np.int16)
+            diff = arrayafter - arraybefore
+            transfo = simbase.astype(np.int16)
+            final = np.clip(transfo + diff,0,255)
+            self._simulation = final.astype(np.uint8)
+        else:
+            raise ValueError("scaling value out of range: the scaling values have to be higher than -2")
+    
+    def supergaussian(self,center,pos,n,sigmax,sigmay,a=1):
+       return a * np.exp((-2 * ((pos[0] - center[0]) / sigmax)**n) + (-2 * ((pos[1] - center[1]) / sigmay)**n))
+
+    def nonUniformIntensity(self,n=4,sigmax=250,sigmay=250):
+        if n % 2 != 0 or n < 2 :
+            raise ValueError("n value can only be a positive and even number")
+        i,j = self._simulation.shape
+        center = (i // 2, j // 2)
+        for xval in range(i):
+            for yval in range(j):
+                self._simulation[xval,yval] = self._simulation[xval,yval] * self.supergaussian(center,(xval,yval),n,sigmax,sigmay)
+
 
 
 class FullyDeveloppedSpeckleSimulationWithCircularSource(FullyDeveloppedSpeckleSimulationWithSource):
@@ -177,8 +214,21 @@ class SumOfFullyDeveloppedSpecklesSimulationWithSource:
 
 if __name__ == '__main__':
     shape = 1000
-
+    """
     c = SumOfFullyDeveloppedSpecklesSimulationWithSource(shape, 2)
     c.runSimulationsWithCircularSources(shape // 6)
     values, _ = c.intensityHistogram()
+    """
+    k = FullyDeveloppedSpeckleSimulationWithCircularSource(shape,100)
+    k.runSimulation()
+    k.showSimulation()
+    k.saveSimulation(r"C:\Users\ludod\Desktop\Stage_CERVO\speckle_imagery\simsave_for_speckle_diameter\test1.tiff")
+    """
+    k.addShotNoise(scaling=3)
+    """
+    k.addShotNoise()
+    k.nonUniformIntensity(sigmax=500,sigmay=500)
+    k.showSimulation()
+    k.saveSimulation(r"C:\Users\ludod\Desktop\Stage_CERVO\speckle_imagery\simsave_for_speckle_diameter\test2.tiff")
+
     
