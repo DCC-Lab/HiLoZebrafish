@@ -53,19 +53,23 @@ class FullyDeveloppedSpeckleSimulationWithSource:
     def addShotNoise(self,scaling=2,resize=False):
         self._simulation = self._simulation * 255
         self._simulation = self._simulation.astype(np.uint8)
-        simbase = self._simulation
+        print(self._simulation)
         if resize != False:
             self._simulation = cv2.resize(self._simulation,resize)
         x,y = self._simulation.shape
+        simbase = self._simulation
         if scaling >= -2:
             self._simulation = self._simulation * (1 + ((scaling - 2) * 0.25))
             arraybefore = self._simulation.astype(np.int16)
+            print(arraybefore)
             self.applyShotNoise()
             arrayafter = self._simulation.astype(np.int16)
+            print(arrayafter)
             diff = arrayafter - arraybefore
             transfo = simbase.astype(np.int16)
             final = np.clip(transfo + diff,0,255)
             self._simulation = final.astype(np.uint8)
+            print(self._simulation)
         else:
             raise ValueError("scaling value out of range: the scaling values have to be higher than -2")
     
@@ -226,8 +230,8 @@ if __name__ == '__main__':
     """
     k.addShotNoise(scaling=3)
     """
-    k.addShotNoise()
-    k.nonUniformIntensity(sigmax=500,sigmay=500)
+    k.addShotNoise(scaling=2)
+    k.nonUniformIntensity(n=2,sigmax=500,sigmay=500)
     k.showSimulation()
     k.saveSimulation(r"C:\Users\ludod\Desktop\Stage_CERVO\speckle_imagery\simsave_for_speckle_diameter\test2.tiff")
 
