@@ -63,7 +63,9 @@ This code is used when connected to the trigger box, in the HiLo microscope. It 
 
 - Then, the crc is calculated for the current command (see section Things to know about the Arduino - lens driver communication: of this README for more information about the crc). The crc is then added at the end of the command. The command + the crc is saved in the variable newData. 
 
-- mySerial.write() sends the command to the lens driver. This command defines the current that needs to be send to the ETL to change the focal plane position by the amount set by step size. 
+- mySerial.write() sends the command to the lens driver. This command defines the current that needs to be send to the ETL to change the focal plane position by the amount set by step size. The positionInZ is changed and the current image number if changed as well. 
+
+- When image equals to totalNumberOfImages, the stepSize if reversed, and the current is changed backwards. 
 
 
 
