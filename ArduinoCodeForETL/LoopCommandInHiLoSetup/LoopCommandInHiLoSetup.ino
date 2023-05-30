@@ -20,7 +20,7 @@ int totalNumberOfImages = 180;
 int image = 1;
 
 // Keep in memory the axial shift (z position of the focal plane compared to the initial z position) in time : 
-int positionInZ;
+int positionInZ = 0;
 
 // Some variable that retains the changes in the state of the received signal from the scrambler : 
 int state = false;
@@ -113,9 +113,10 @@ void loop() {
   positionInZ += stepSize;
   image += 1;
 
-  // Revirer de bord quand il atteind 0 ou maxDepth : 
+// When the z-stack is done: 
   if (image <= 1 || image >= totalNumberOfImages) {
-    stepSize = -stepSize;
+    positionInZ = 0; // Retourner au plan de départ, à current = 0 mA
+    // stepSize = -stepSize; // Revirer de bord quand il atteint son maxDepth
     image = 1;
     }
   
